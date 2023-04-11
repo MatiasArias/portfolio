@@ -15,6 +15,9 @@ public class Educacion {
         this.añoFin = añoFin;
     }
 
+    public Educacion() {
+    }
+
     public Long getId() {
         return id;
     }
