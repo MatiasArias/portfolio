@@ -9,11 +9,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/Matias-Arias")
-public class PerfilServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+@WebServlet("/parametros/url-get")
+public class ParametrosGetServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+
+        String puesto = req.getParameter("puesto");
         out.println("<!DOCTYPE html>");
         out.println("<html lang=\"en\">");
         out.println("<head>");
@@ -22,17 +25,9 @@ public class PerfilServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>MATIAS JESÚS ARIAS</h1>");
+        out.println("<h2>"+puesto+"</h2>");
         out.println("</body>");
         out.println("</html>");
         out.close();
-
-
-
-
-
-
-
-
-
     }
 }
