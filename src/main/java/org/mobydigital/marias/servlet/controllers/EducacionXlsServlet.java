@@ -37,6 +37,7 @@ public class EducacionXlsServlet extends HttpServlet {
                 out.println("<body>");
                 out.println("<h1>Estudios</h1>");
                 out.println("<p><a href=\"" + req.getContextPath() + "/educacion.xls\">Exportar a Excel</a></p>");
+                out.println("<p><a href=\"" + req.getContextPath() + "/educacion.json\">Mostrar JSON</a></p>");
             }
             out.println("<table>");
             out.println("<tr>");
