@@ -1,4 +1,4 @@
-package org.mobydigital.marias.servlet;
+package org.mobydigital.marias.servlet.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
