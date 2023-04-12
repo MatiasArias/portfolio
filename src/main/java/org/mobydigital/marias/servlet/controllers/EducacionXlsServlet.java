@@ -1,13 +1,15 @@
 package org.mobydigital.marias.servlet.controllers;
 
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.mobydigital.marias.servlet.models.Educacion;
+import org.mobydigital.marias.servlet.entity.Educacion;
 import org.mobydigital.marias.servlet.services.EducacionService;
 import org.mobydigital.marias.servlet.services.EducacionServiceImpl;
+import org.mobydigital.marias.servlet.util.JpaUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +19,8 @@ import java.util.List;
 public class EducacionXlsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        EducacionService service = new EducacionServiceImpl();
+        EntityManager em = JpaUtil.getEntityManagerFactory();
+        EducacionService service = new EducacionServiceImpl(em);
         List<Educacion> estudios = service.listar();
         String servletPath = req.getServletPath();
         boolean esXls = servletPath.endsWith(".xls");
@@ -48,10 +51,10 @@ public class EducacionXlsServlet extends HttpServlet {
             out.println("</tr>");
             estudios.forEach(e->{
                 out.println("<tr>");
-                out.println("<td>"+e.getNombreInstitucion()+"</td>");
-                out.println("<td>"+e.getNombreTitulo()+"</td>");
-                out.println("<td>"+e.getAñoInicio()+"</td>");
-                out.println("<td>"+e.getAñoFin()+"</td>");
+                out.println("<td>"+e.getInstitucion()+"</td>");
+                out.println("<td>"+e.getTitulo()+"</td>");
+                out.println("<td>"+e.getAñoIngreso()+"</td>");
+                out.println("<td>"+e.getAñoEgreso()+"</td>");
                 out.println("</tr>");
             });
             out.println("</table>");
@@ -60,5 +63,6 @@ public class EducacionXlsServlet extends HttpServlet {
             out.println("</html>");
             }
         }
+        em.close();
     }
 }
