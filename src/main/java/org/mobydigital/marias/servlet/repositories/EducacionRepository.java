@@ -5,10 +5,10 @@ import org.mobydigital.marias.servlet.entity.Educacion;
 
 import java.util.List;
 
-public class EducacionRepositorio implements CrudRepository<Educacion> {
+public class EducacionRepository implements CrudRepository<Educacion> {
     private EntityManager em;
 
-    public EducacionRepositorio(EntityManager em) {
+    public EducacionRepository(EntityManager em) {
         this.em = em;
     }
 
