@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.mobydigital.marias.servlet.models.Educacion;
+import org.mobydigital.marias.servlet.entity.Educacion;
 import org.mobydigital.marias.servlet.services.EducacionService;
 import org.mobydigital.marias.servlet.services.EducacionServiceImpl;
 

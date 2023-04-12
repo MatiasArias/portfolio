@@ -1,4 +1,4 @@
-package org.mobydigital.marias.servlet.models;
+package org.mobydigital.marias.servlet.entity;
 
 public class Educacion {
     private Long id;

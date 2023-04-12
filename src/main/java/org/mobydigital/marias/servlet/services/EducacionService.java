@@ -1,6 +1,6 @@
 package org.mobydigital.marias.servlet.services;
 
-import org.mobydigital.marias.servlet.models.Educacion;
+import org.mobydigital.marias.servlet.entity.Educacion;
 
 import java.util.List;
 
