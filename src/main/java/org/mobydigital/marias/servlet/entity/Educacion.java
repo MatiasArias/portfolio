@@ -66,8 +66,8 @@ public class Educacion {
 
     @Override
     public String toString() {
-        return  idEducacion +" - '" + institucion + '\'' +
-                " - " + titulo + '\'' +
+        return  idEducacion +" - " + institucion +
+                " - " + titulo  +
                 " (" + añoIngreso +
                 "-" + añoEgreso +
                 ')';
