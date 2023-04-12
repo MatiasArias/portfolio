@@ -48,10 +48,10 @@ public class EducacionXlsServlet extends HttpServlet {
             out.println("</tr>");
             estudios.forEach(e->{
                 out.println("<tr>");
-                out.println("<td>"+e.getNombreInstitucion()+"</td>");
-                out.println("<td>"+e.getNombreTitulo()+"</td>");
-                out.println("<td>"+e.getAñoInicio()+"</td>");
-                out.println("<td>"+e.getAñoFin()+"</td>");
+                out.println("<td>"+e.getInstitucion()+"</td>");
+                out.println("<td>"+e.getTitulo()+"</td>");
+                out.println("<td>"+e.getAñoIngreso()+"</td>");
+                out.println("<td>"+e.getAñoEgreso()+"</td>");
                 out.println("</tr>");
             });
             out.println("</table>");

@@ -43,10 +43,10 @@ public class EducacionJsonServlet extends HttpServlet {
         out.println("<body>");
         out.println("<h1>Detalle de educacion desde JSON</h1>");
         out.println("<ul>");
-        out.println("<li>Institucion: "+educacion.getNombreInstitucion()+"</li>");
-        out.println("<li>Titulo: "+educacion.getNombreTitulo()+"</li>");
-        out.println("<li>Año Inicio: "+educacion.getAñoInicio()+"</li>");
-        out.println("<li>Año Egreso: "+educacion.getAñoFin()+"</li>");
+        out.println("<li>Institucion: "+educacion.getInstitucion()+"</li>");
+        out.println("<li>Titulo: "+educacion.getTitulo()+"</li>");
+        out.println("<li>Año Inicio: "+educacion.getAñoIngreso()+"</li>");
+        out.println("<li>Año Egreso: "+educacion.getAñoEgreso()+"</li>");
         out.println("</ul>");
         out.println("</body>");
         out.println("</html>");

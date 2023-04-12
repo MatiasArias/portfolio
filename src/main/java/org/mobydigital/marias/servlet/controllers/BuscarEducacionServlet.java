@@ -24,7 +24,7 @@ public class BuscarEducacionServlet extends HttpServlet {
             if (nombre.isBlank() || nombre==null){
                 return false;
             }
-            return p.getNombreTitulo().contains(nombre);
+            return p.getTitulo().contains(nombre);
         }).findFirst();
         if (educacionEncontrada.isPresent()){
             resp.setContentType("text/html");
@@ -38,8 +38,8 @@ public class BuscarEducacionServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Titulo encontrado</h1>");
-            out.println("<h2> Educacion encontrada: "+educacionEncontrada.get().getNombreTitulo()+" - "+
-                    educacionEncontrada.get().getNombreInstitucion()+"</h2>");
+            out.println("<h2> Educacion encontrada: "+educacionEncontrada.get().getTitulo()+" - "+
+                    educacionEncontrada.get().getInstitucion()+"</h2>");
             out.println("</body>");
             out.println("</html>");
             out.close();

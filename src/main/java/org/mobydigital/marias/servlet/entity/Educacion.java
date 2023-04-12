@@ -1,60 +1,75 @@
 package org.mobydigital.marias.servlet.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="educacion")
 public class Educacion {
-    private Long id;
-    private String nombreInstitucion;
-    private String nombreTitulo;
-    private Integer añoInicio;
-    private Integer añoFin;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEducacion;
+    private String institucion;
+    private String titulo;
+    private Integer añoIngreso;
+    private Integer añoEgreso;
 
     public Educacion(Long id, String nombreInstitucion, String nombreTitulo, Integer añoInicio, Integer añoFin) {
-        this.id = id;
-        this.nombreInstitucion = nombreInstitucion;
-        this.nombreTitulo = nombreTitulo;
-        this.añoInicio = añoInicio;
-        this.añoFin = añoFin;
+        this.idEducacion = id;
+        this.institucion = nombreInstitucion;
+        this.titulo = nombreTitulo;
+        this.añoIngreso = añoInicio;
+        this.añoEgreso = añoFin;
     }
 
     public Educacion() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEducacion() {
+        return idEducacion;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEducacion(Long idEducacion) {
+        this.idEducacion = idEducacion;
     }
 
-    public String getNombreInstitucion() {
-        return nombreInstitucion;
+    public String getInstitucion() {
+        return institucion;
     }
 
-    public void setNombreInstitucion(String nombreInstitucion) {
-        this.nombreInstitucion = nombreInstitucion;
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
     }
 
-    public String getNombreTitulo() {
-        return nombreTitulo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombreTitulo(String nombreTitulo) {
-        this.nombreTitulo = nombreTitulo;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public Integer getAñoInicio() {
-        return añoInicio;
+    public Integer getAñoIngreso() {
+        return añoIngreso;
     }
 
-    public void setAñoInicio(Integer añoInicio) {
-        this.añoInicio = añoInicio;
+    public void setAñoIngreso(Integer añoIngreso) {
+        this.añoIngreso = añoIngreso;
     }
 
-    public Integer getAñoFin() {
-        return añoFin;
+    public Integer getAñoEgreso() {
+        return añoEgreso;
     }
 
-    public void setAñoFin(Integer añoFin) {
-        this.añoFin = añoFin;
+    public void setAñoEgreso(Integer añoEgreso) {
+        this.añoEgreso = añoEgreso;
+    }
+
+    @Override
+    public String toString() {
+        return  idEducacion +" - '" + institucion + '\'' +
+                " - " + titulo + '\'' +
+                " (" + añoIngreso +
+                "-" + añoEgreso +
+                ')';
     }
 }
