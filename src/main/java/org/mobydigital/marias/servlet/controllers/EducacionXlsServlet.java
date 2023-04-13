@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.mobydigital.marias.servlet.entity.Educacion;
-import org.mobydigital.marias.servlet.services.EducacionService;
+import org.mobydigital.marias.portafolio.models.Educacion;
+import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.mobydigital.marias.servlet.services.EducacionServiceImpl;
 import org.mobydigital.marias.servlet.util.JpaUtil;
 
@@ -21,7 +21,7 @@ public class EducacionXlsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EntityManager em = JpaUtil.getEntityManagerFactory();
         EducacionService service = new EducacionServiceImpl(em);
-        List<Educacion> estudios = service.listar();
+        List<Educacion> estudios = service.getEducaciones();
         String servletPath = req.getServletPath();
         boolean esXls = servletPath.endsWith(".xls");
         if(esXls){

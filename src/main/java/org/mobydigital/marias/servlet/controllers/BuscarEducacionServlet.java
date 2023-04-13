@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.mobydigital.marias.servlet.entity.Educacion;
-import org.mobydigital.marias.servlet.services.EducacionService;
+import org.mobydigital.marias.portafolio.models.Educacion;
+import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.mobydigital.marias.servlet.services.EducacionServiceImpl;
 import org.mobydigital.marias.servlet.util.JpaUtil;
 
@@ -23,7 +23,7 @@ public class BuscarEducacionServlet extends HttpServlet {
         EducacionService service = new EducacionServiceImpl(em);
         String nombre = req.getParameter("educacion");
 
-        Optional<Educacion> educacionEncontrada = service.listar().stream().filter(p->{
+        Optional<Educacion> educacionEncontrada = service.getEducaciones().stream().filter(p->{
             if (nombre.isBlank() || nombre==null){
                 return false;
             }

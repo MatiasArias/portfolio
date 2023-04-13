@@ -1,4 +1,4 @@
-package org.mobydigital.marias.servlet.entity;
+package org.mobydigital.marias.portafolio.models;
 
 import jakarta.persistence.*;
 
