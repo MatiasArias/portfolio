@@ -9,6 +9,13 @@ import java.util.List;
 public class HabilidadRepository implements CrudRepository<Habilidad>{
     private EntityManager em;
 
+    public HabilidadRepository() {
+    }
+
+    public HabilidadRepository(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public List<Habilidad> listar() {
         return em.createQuery("SELECT s FROM Habilidad s", Habilidad.class).getResultList();
