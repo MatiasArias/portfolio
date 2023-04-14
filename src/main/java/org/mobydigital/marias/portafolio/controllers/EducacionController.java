@@ -19,8 +19,8 @@ public class EducacionController {
     private EducacionServiceImpl educacionService;
 
     @GetMapping
-    public ResponseEntity<List<Educacion>> getEducaciones(@QueryParam("startWith") String startWith){
-        return new ResponseEntity<>(educacionService.getEducaciones(startWith), HttpStatus.OK);
+    public ResponseEntity<List<Educacion>> getEducaciones(@QueryParam("educacion") String educacion){
+        return new ResponseEntity<>(educacionService.getEducaciones(educacion), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<Educacion> getEducacionPorId(@PathVariable("id") Long id){
