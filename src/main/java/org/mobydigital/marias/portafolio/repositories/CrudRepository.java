@@ -1,4 +1,4 @@
-package org.mobydigital.marias.servlet.repositories;
+package org.mobydigital.marias.portafolio.repositories;
 
 import java.util.List;
 

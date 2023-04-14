@@ -1,15 +1,15 @@
 package org.mobydigital.marias.servlet.services;
 
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.servlet.entity.Educacion;
-import org.mobydigital.marias.servlet.repositories.CrudRepository;
-import org.mobydigital.marias.servlet.repositories.EducacionRepository;
+import org.mobydigital.marias.portafolio.models.Educacion;
+import org.mobydigital.marias.portafolio.repositories.CrudRepository;
+import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-public class EducacionServiceImpl implements EducacionService{
+@Service
+public class EducacionServiceImpl implements EducacionService {
     private EntityManager em;
     private CrudRepository<Educacion> repository;
 
@@ -22,7 +22,7 @@ public class EducacionServiceImpl implements EducacionService{
     }
 
     @Override
-    public List<Educacion> listar() {
+    public List<Educacion> getEducaciones() {
         return repository.listar();
     }
 
