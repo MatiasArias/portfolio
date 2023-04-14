@@ -31,7 +31,7 @@ public class HabilidadService implements EntityService<Habilidad> {
     public List<Habilidad> getListEntidades(String startWith) {
         if(startWith!=null){
             return repository.listar().stream()
-                    .filter(s->s.getTitulo().startsWith(startWith))
+                    .filter(s->s.getTitulo().toUpperCase().contains(startWith.toUpperCase()))
                     .collect(Collectors.toList());
         }else{
             return repository.listar();
