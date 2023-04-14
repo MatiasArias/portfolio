@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EducacionServiceImpl{
+public class EducacionService implements EntityService<Educacion> {
 
     private EntityManager em;
     private CrudRepository<Educacion> repository;
@@ -27,7 +27,8 @@ public class EducacionServiceImpl{
         this.em = conexion.getEntityManagerFactory();
         this.repository = new EducacionRepository(em);
     }
-    public List<Educacion> getEducaciones(String startWith) {
+
+    public List<Educacion> getListEntidades(String startWith) {
         if(startWith!=null){
         return repository.listar().stream()
                 .filter(e->e.getTitulo().startsWith(startWith))
@@ -37,13 +38,12 @@ public class EducacionServiceImpl{
         }
     }
 
-
     public Educacion porId(Long id) {
         return repository.listar().stream().filter(e->e.getIdEducacion().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Educacion not found"));
     }
 
-
+    @Override
     public Educacion guardar(Educacion educacion) {
         if(repository.listar().stream().anyMatch(e -> e.equals(educacion))){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"esa Educacion ya existe");
@@ -58,7 +58,6 @@ public class EducacionServiceImpl{
         }
         return educacion;
     }
-
 
     public void eliminar(Long id) {
         try{

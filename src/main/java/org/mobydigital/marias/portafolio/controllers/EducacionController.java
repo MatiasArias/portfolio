@@ -2,13 +2,11 @@ package org.mobydigital.marias.portafolio.controllers;
 
 import jakarta.ws.rs.QueryParam;
 import org.mobydigital.marias.portafolio.models.Educacion;
-import org.mobydigital.marias.portafolio.services.EducacionServiceImpl;
+import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,11 +14,11 @@ import java.util.List;
 @RequestMapping("/educaciones")
 public class EducacionController {
     @Autowired
-    private EducacionServiceImpl educacionService;
+    private EducacionService educacionService;
 
     @GetMapping
     public ResponseEntity<List<Educacion>> getEducaciones(@QueryParam("educacion") String educacion){
-        return new ResponseEntity<>(educacionService.getEducaciones(educacion), HttpStatus.OK);
+        return new ResponseEntity<>(educacionService.getListEntidades(educacion), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<Educacion> getEducacionPorId(@PathVariable("id") Long id){
