@@ -4,16 +4,14 @@ package org.mobydigital.marias.portafolio.services;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.Educacion;
-import org.mobydigital.marias.servlet.repositories.CrudRepository;
-import org.mobydigital.marias.servlet.repositories.EducacionRepository;
-import org.mobydigital.marias.portafolio.services.JpaUtil;
+import org.mobydigital.marias.portafolio.repositories.CrudRepository;
+import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
