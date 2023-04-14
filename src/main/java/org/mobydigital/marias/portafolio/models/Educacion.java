@@ -2,6 +2,8 @@ package org.mobydigital.marias.portafolio.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="educacion")
 public class Educacion {
@@ -62,6 +64,19 @@ public class Educacion {
 
     public void setAñoEgreso(Integer añoEgreso) {
         this.añoEgreso = añoEgreso;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Educacion educacion = (Educacion) o;
+        return Objects.equals(idEducacion, educacion.idEducacion) && Objects.equals(institucion, educacion.institucion) && Objects.equals(titulo, educacion.titulo) && Objects.equals(añoIngreso, educacion.añoIngreso) && Objects.equals(añoEgreso, educacion.añoEgreso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEducacion, institucion, titulo, añoIngreso, añoEgreso);
     }
 
     @Override

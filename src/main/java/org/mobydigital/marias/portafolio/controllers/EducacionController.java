@@ -1,26 +1,44 @@
 package org.mobydigital.marias.portafolio.controllers;
 
+import jakarta.ws.rs.QueryParam;
 import org.mobydigital.marias.portafolio.models.Educacion;
 import org.mobydigital.marias.portafolio.services.EducacionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/educaciones.json")
+@RequestMapping("/educaciones")
 public class EducacionController {
     @Autowired
     private EducacionServiceImpl educacionService;
 
     @GetMapping
-    public ResponseEntity<List<Educacion>> getEducaciones(){
-        return new ResponseEntity<>(educacionService.getEducaciones(), HttpStatus.OK);
+    public ResponseEntity<List<Educacion>> getEducaciones(@QueryParam("startWith") String startWith){
+        return new ResponseEntity<>(educacionService.getEducaciones(startWith), HttpStatus.OK);
+    }
+    @GetMapping(value="/{id}")
+    public ResponseEntity<Educacion> getEducacionPorId(@PathVariable("id") Long id){
+        return new ResponseEntity<Educacion>(educacionService.porId(id),HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Educacion> guardarEducacion(@RequestBody Educacion educacion){
+        return new ResponseEntity<Educacion>(educacionService.guardar(educacion),HttpStatus.CREATED);
+    }
+    @PutMapping
+    public ResponseEntity<Educacion> actualizarEducacion(@RequestBody Educacion educacion){
+        return new ResponseEntity<Educacion>(educacionService.guardar(educacion),HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id){
+        educacionService.eliminar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 

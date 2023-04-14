@@ -2,7 +2,6 @@ package org.mobydigital.marias.servlet.services;
 
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.Educacion;
-import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.mobydigital.marias.servlet.repositories.CrudRepository;
 import org.mobydigital.marias.servlet.repositories.EducacionRepository;
 import org.springframework.stereotype.Service;
