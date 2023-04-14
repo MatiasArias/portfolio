@@ -1,5 +1,6 @@
 package org.mobydigital.marias.portafolio.services;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.Experiencia;
 import org.mobydigital.marias.portafolio.repositories.CrudRepository;
@@ -19,8 +20,10 @@ public class ExperienciaService implements EntityService<Experiencia>{
     @Autowired
     private JpaUtil conexion;
     @Override
+    @PostConstruct
     public void init() {
-        this.repository = new ExperienciaRepository(conexion.getEntityManagerFactory());
+        this.em = conexion.getEntityManagerFactory();
+        this.repository = new ExperienciaRepository(em);
     }
 
     @Override
@@ -43,9 +46,6 @@ public class ExperienciaService implements EntityService<Experiencia>{
 
     @Override
     public Experiencia guardar(Experiencia experiencia) {
-        if(repository.listar().stream().anyMatch(e -> e.equals(experiencia))){
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"esa Experiencia ya existe");
-        }
         try{
             em.getTransaction().begin();
             repository.guardar(experiencia);
