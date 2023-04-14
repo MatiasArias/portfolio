@@ -30,7 +30,7 @@ public class ExperienciaService implements EntityService<Experiencia>{
     public List<Experiencia> getListEntidades(String experiencia) {
         if(experiencia!=null){
             return repository.listar().stream()
-                    .filter(e->e.getTitulo().contains(experiencia))
+                    .filter(e->e.getTitulo().toUpperCase().contains(experiencia.toUpperCase()))
                     .collect(Collectors.toList());
         }else{
             return repository.listar();
