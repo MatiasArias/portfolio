@@ -18,7 +18,7 @@ public class EducacionController {
 
     @GetMapping
     public ResponseEntity<List<Educacion>> getEducaciones(@QueryParam("educacion") String educacion){
-        return new ResponseEntity<>(educacionService.getListEntidades(educacion), HttpStatus.OK);
+        return new ResponseEntity<List<Educacion>>(educacionService.getListEntidades(educacion), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<Educacion> getEducacionPorId(@PathVariable("id") Long id){
