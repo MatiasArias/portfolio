@@ -2,6 +2,8 @@ package org.mobydigital.marias.portafolio.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="experiencia")
 public class Experiencia {
@@ -70,5 +72,18 @@ public class Experiencia {
                 "\n" + añoDesde +
                 "-" + añoHasta +
                 "\n\t" + descripcion + '\'' ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Experiencia that = (Experiencia) o;
+        return Objects.equals(idExperiencia, that.idExperiencia) && Objects.equals(titulo, that.titulo) && Objects.equals(descripcion, that.descripcion) && Objects.equals(añoDesde, that.añoDesde) && Objects.equals(añoHasta, that.añoHasta);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idExperiencia, titulo, descripcion, añoDesde, añoHasta);
     }
 }
