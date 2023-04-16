@@ -1,8 +1,7 @@
 package org.mobydigital.marias.portafolio.repositories;
 
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.models.Educacion;
-import org.mobydigital.marias.portafolio.models.Experiencia;
+import org.mobydigital.marias.portafolio.entities.Experiencia;
 
 import java.util.List;
 
