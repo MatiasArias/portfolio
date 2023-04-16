@@ -3,17 +3,18 @@ package org.mobydigital.marias.portafolio.models;
 import java.util.Date;
 
 public class Proyecto {
-    private int idProyecto;
+    private Long idProyecto;
     private String titulo;
     private String descripcion;
     private String urlImagen;
     private String urlProyecto;
     private Date fecha;
+    private String active;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idProyecto, String titulo, String descripcion, String urlImagen, String urlProyecto, Date fecha) {
+    public Proyecto(Long idProyecto, String titulo, String descripcion, String urlImagen, String urlProyecto, Date fecha) {
         this.idProyecto = idProyecto;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -22,11 +23,21 @@ public class Proyecto {
         this.fecha = fecha;
     }
 
-    public int getIdProyecto() {
+    public Proyecto(Long idProyecto, String titulo, String descripcion, String urlImagen, String urlProyecto, Date fecha, String active) {
+        this.idProyecto = idProyecto;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.urlImagen = urlImagen;
+        this.urlProyecto = urlProyecto;
+        this.fecha = fecha;
+        this.active = active;
+    }
+
+    public Long getIdProyecto() {
         return idProyecto;
     }
 
-    public void setIdProyecto(int idProyecto) {
+    public void setIdProyecto(Long idProyecto) {
         this.idProyecto = idProyecto;
     }
 
@@ -68,5 +79,13 @@ public class Proyecto {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 }
