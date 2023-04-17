@@ -47,6 +47,7 @@ public class HabilidadService implements EntityService<Habilidad> {
 
     @Override
     public Habilidad guardar(Habilidad habilidad) {
+        if(!habilidad.getTitulo().isEmpty()){
         try{
             em.getTransaction().begin();
             repository.guardar(habilidad);
@@ -54,6 +55,7 @@ public class HabilidadService implements EntityService<Habilidad> {
         }catch(Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
+        }
         }
         return habilidad;
     }

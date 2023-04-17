@@ -5,5 +5,6 @@ public class Pages {
     public static String PROYECTO="proyecto";
     public static String LOGIN="login";
     public static String BUSCAR="buscar";
+    public static String CARGAR_HABILIDAD="form";
 
 }
