@@ -9,7 +9,7 @@ public class Proyecto {
     private String urlImagen;
     private String urlProyecto;
     private Date fecha;
-    private String active;
+    public String active;
 
     public Proyecto() {
     }
@@ -87,5 +87,18 @@ public class Proyecto {
 
     public void setActive(String active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Proyecto{" +
+                "idProyecto=" + idProyecto +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", urlImagen='" + urlImagen + '\'' +
+                ", urlProyecto='" + urlProyecto + '\'' +
+                ", fecha=" + fecha +
+                ", active='" + active + '\'' +
+                '}';
     }
 }

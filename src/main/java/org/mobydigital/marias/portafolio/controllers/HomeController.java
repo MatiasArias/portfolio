@@ -17,7 +17,7 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView getProyectos(){
         ModelAndView modelAndView = new ModelAndView(Pages.HOME);
-        modelAndView.addObject("proyectos", proyectoService.getListEntidades(""));
+        modelAndView.addObject("proyectos", proyectoService.getListEntidades());
         return modelAndView;
     }
 }

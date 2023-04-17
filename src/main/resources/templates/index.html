@@ -59,7 +59,7 @@
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators" >
-            <button  th:each="proyecto : ${proyectos}" type="button" data-bs-target="#carouselExampleCaptions" class="" th:data-bs-slide-to="${proyecto.idProyecto}" th:class="${proyecto.active}" th:aria-current="${proyecto.active.equals(' active')}?'true':''" th:aria-label="@{Slide}+' '+${proyecto.idProyecto+1}"></button>
+            <button  th:each="proyecto : ${proyectos}" type="button" data-bs-target="#carouselExampleCaptions" class="" th:data-bs-slide-to="${proyecto.idProyecto}" th:class="${proyecto.active}" th:aria-current="${proyecto.active.equals(' active')}" th:aria-label="@{Slide}+' '+${proyecto.idProyecto+1}"></button>
         </div>
         <div class="carousel-inner">
             <div  th:each="proyecto : ${proyectos}" class="carousel-item" th:class="@{carousel-item}+${proyecto.active}">
