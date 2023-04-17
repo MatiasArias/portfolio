@@ -1,6 +1,7 @@
-package org.mobydigital.marias.portafolio.models;
+package org.mobydigital.marias.portafolio.entities;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Objects;
 

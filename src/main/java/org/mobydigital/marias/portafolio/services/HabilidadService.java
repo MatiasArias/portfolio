@@ -2,7 +2,7 @@ package org.mobydigital.marias.portafolio.services;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.models.Habilidad;
+import org.mobydigital.marias.portafolio.entities.Habilidad;
 import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.HabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +47,7 @@ public class HabilidadService implements EntityService<Habilidad> {
 
     @Override
     public Habilidad guardar(Habilidad habilidad) {
+        if(!habilidad.getTitulo().isEmpty()){
         try{
             em.getTransaction().begin();
             repository.guardar(habilidad);
@@ -54,6 +55,7 @@ public class HabilidadService implements EntityService<Habilidad> {
         }catch(Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
+        }
         }
         return habilidad;
     }

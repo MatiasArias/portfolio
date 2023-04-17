@@ -1,0 +1,47 @@
+.row{
+    background-color: #5b88a5;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.link {
+    color: #f4f4f2;
+    text-decoration: none;
+}
+.link:hover{
+color:#243a69;
+}
+.simple-linear {
+    background-size:100%;
+}
+.colorhint-gradient {
+  background: linear-gradient(to top,#d4cdc5, 90%, #f4f4f2);
+}
+
+ html {
+   height: 100%;
+   min-height: 100%;
+   position: relative;
+ }
+
+ footer {
+   background-color: #212529;
+   padding: 5rem;
+   bottom: 0;
+   color: white;
+   left:0 ;
+   width: 100%;
+ }
+ .container-fluid{
+ display: flex;
+ padding-right:0;
+ padding-left:0;
+ }
+
+*/
+#d4cdc5 //beige
+#5b88a5 //light-blue
+#f4f4f2 //white
+#191013 //black
+#243a69 //blue
+*/
