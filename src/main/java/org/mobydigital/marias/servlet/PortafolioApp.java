@@ -2,7 +2,7 @@ package org.mobydigital.marias.servlet;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import org.mobydigital.marias.portafolio.entities.Educacion;
+import org.mobydigital.marias.portafolio.models.entities.Educacion;
 import org.mobydigital.marias.servlet.util.JpaUtil;
 
 import java.util.List;

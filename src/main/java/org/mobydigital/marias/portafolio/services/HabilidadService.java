@@ -2,7 +2,7 @@ package org.mobydigital.marias.portafolio.services;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.entities.Habilidad;
+import org.mobydigital.marias.portafolio.models.entities.Habilidad;
 import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.HabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;

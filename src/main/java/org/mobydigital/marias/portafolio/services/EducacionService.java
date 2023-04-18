@@ -3,7 +3,7 @@ package org.mobydigital.marias.portafolio.services;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.entities.Educacion;
+import org.mobydigital.marias.portafolio.models.entities.Educacion;
 import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

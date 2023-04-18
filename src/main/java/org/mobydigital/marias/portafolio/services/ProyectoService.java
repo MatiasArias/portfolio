@@ -1,10 +1,6 @@
 package org.mobydigital.marias.portafolio.services;
 
-import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.entities.Educacion;
 import org.mobydigital.marias.portafolio.models.Proyecto;
-import org.mobydigital.marias.portafolio.repositories.CrudRepository;
-import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

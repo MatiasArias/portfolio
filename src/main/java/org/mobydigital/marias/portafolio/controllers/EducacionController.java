@@ -1,7 +1,7 @@
 package org.mobydigital.marias.portafolio.controllers;
 
 import jakarta.ws.rs.QueryParam;
-import org.mobydigital.marias.portafolio.entities.Educacion;
+import org.mobydigital.marias.portafolio.models.entities.Educacion;
 import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

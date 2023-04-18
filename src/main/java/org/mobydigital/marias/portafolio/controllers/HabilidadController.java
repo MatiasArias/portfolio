@@ -2,7 +2,7 @@ package org.mobydigital.marias.portafolio.controllers;
 
 import jakarta.ws.rs.QueryParam;
 import org.mobydigital.marias.portafolio.configuration.Pages;
-import org.mobydigital.marias.portafolio.entities.Habilidad;
+import org.mobydigital.marias.portafolio.models.entities.Habilidad;
 import org.mobydigital.marias.portafolio.services.HabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
