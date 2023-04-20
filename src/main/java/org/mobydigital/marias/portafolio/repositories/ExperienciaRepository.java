@@ -2,9 +2,10 @@ package org.mobydigital.marias.portafolio.repositories;
 
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Experiencia;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class ExperienciaRepository implements CrudRepository<Experiencia> {
     private EntityManager em;
 

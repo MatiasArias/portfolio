@@ -13,10 +13,6 @@ import java.util.List;
 public class ProyectoService implements EntityService<Proyecto>{
     @Autowired
     private ArchivoService archivoService;
-    @Override
-    public void init() {
-        System.out.println("Nada");
-    }
 
     @Override
     public List getListEntidades(String startWith) {

@@ -1,10 +1,8 @@
 package org.mobydigital.marias.portafolio.services;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.models.entities.Habilidad;
+import org.mobydigital.marias.portafolio.models.entities.Candidato;
 import org.mobydigital.marias.portafolio.repositories.CrudRepository;
-import org.mobydigital.marias.portafolio.repositories.HabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,45 +12,50 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class HabilidadService implements EntityService<Habilidad> {
-
+public class CandidatoService implements EntityService<Candidato> {
     @Autowired
     private EntityManager em;
+
     @Autowired
-    private CrudRepository<Habilidad> repository;
+    private CrudRepository<Candidato> repository;
 
 
     @Override
-    public List<Habilidad> getListEntidades(String startWith) {
-        if(startWith!=null){
+    public List<Candidato> getListEntidades(String nombreSubstring) {
+        if(nombreSubstring!=null){
             return repository.listar().stream()
-                    .filter(s->s.getTitulo().toUpperCase().contains(startWith.toUpperCase()))
+                    .filter(c->(c.getNombre()+" "+c.getApellido()).startsWith(nombreSubstring))
                     .collect(Collectors.toList());
         }else{
             return repository.listar();
         }
     }
 
+    public List<Candidato> getListEntidades() {
+        return repository.listar();
+    }
+
     @Override
-    public Habilidad porId(Long id) {
-        return repository.listar().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Habilidad not found"));
+    public Candidato porId(Long id) {
+        return repository.listar().stream().filter(e->e.getIdCandidato().equals(id)).findAny()
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Candidato not found"));
 
     }
 
     @Override
-    public Habilidad guardar(Habilidad habilidad) {
-        if(!habilidad.getTitulo().isEmpty()){
+    public Candidato guardar(Candidato candidato) {
+        if(repository.listar().stream().anyMatch(e -> e.equals(candidato))){
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"ese Candidato ya existe");
+        }
         try{
             em.getTransaction().begin();
-            repository.guardar(habilidad);
+            repository.guardar(candidato);
             em.getTransaction().commit();
         }catch(Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
         }
-        }
-        return habilidad;
+        return candidato;
     }
 
     @Override

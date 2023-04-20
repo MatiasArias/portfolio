@@ -15,12 +15,26 @@ public class Educacion {
     private Integer añoIngreso;
     private Integer añoEgreso;
 
-    public Educacion(Long id, String nombreInstitucion, String nombreTitulo, Integer añoInicio, Integer añoFin) {
-        this.idEducacion = id;
-        this.institucion = nombreInstitucion;
-        this.titulo = nombreTitulo;
-        this.añoIngreso = añoInicio;
-        this.añoEgreso = añoFin;
+    @ManyToOne()
+    @JoinColumn(name = "idCandidato")
+    private Candidato candidato;
+
+
+    public Candidato getCandidato() {
+        return candidato;
+    }
+
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
+    }
+
+    public Educacion(Long idEducacion, String institucion, String titulo, Integer añoIngreso, Integer añoEgreso, Candidato candidato) {
+        this.idEducacion = idEducacion;
+        this.institucion = institucion;
+        this.titulo = titulo;
+        this.añoIngreso = añoIngreso;
+        this.añoEgreso = añoEgreso;
+        this.candidato = candidato;
     }
 
     public Educacion() {
