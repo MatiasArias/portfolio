@@ -15,16 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExperienciaService implements EntityService<Experiencia>{
-    private EntityManager em;
-    private CrudRepository<Experiencia> repository;
     @Autowired
-    private JpaUtil conexion;
-    @Override
-    @PostConstruct
-    public void init() {
-        this.em = conexion.getEntityManagerFactory();
-        this.repository = new ExperienciaRepository(em);
-    }
+    private EntityManager em;
+    @Autowired
+    private CrudRepository<Experiencia> repository;
+
 
     @Override
     public List<Experiencia> getListEntidades(String experiencia) {

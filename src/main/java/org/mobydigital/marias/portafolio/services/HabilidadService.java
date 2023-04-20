@@ -16,16 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class HabilidadService implements EntityService<Habilidad> {
 
-    private EntityManager em;
-    private CrudRepository<Habilidad> repository;
     @Autowired
-    private JpaUtil conexion;
-    @Override
-    @PostConstruct
-    public void init() {
-        this.em = conexion.getEntityManagerFactory();
-        this.repository = new HabilidadRepository(em);
-    }
+    private EntityManager em;
+    @Autowired
+    private CrudRepository<Habilidad> repository;
+
 
     @Override
     public List<Habilidad> getListEntidades(String startWith) {

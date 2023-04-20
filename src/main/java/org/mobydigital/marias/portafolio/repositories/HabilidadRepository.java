@@ -2,10 +2,13 @@ package org.mobydigital.marias.portafolio.repositories;
 
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Habilidad;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class HabilidadRepository implements CrudRepository<Habilidad>{
+    @Autowired
     private EntityManager em;
 
     public HabilidadRepository() {
