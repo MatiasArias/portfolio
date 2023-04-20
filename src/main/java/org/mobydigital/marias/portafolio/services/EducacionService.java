@@ -8,6 +8,7 @@ import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,16 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class EducacionService implements EntityService<Educacion> {
 
+    @Autowired
     private EntityManager em;
+
+    @Autowired
     private CrudRepository<Educacion> repository;
+
     @Autowired
     private JpaUtil conexion;
 
-    @PostConstruct
-    public void init(){
-        this.em = conexion.getEntityManagerFactory();
-        this.repository = new EducacionRepository(em);
-    }
 
     public List<Educacion> getListEntidades(String startWith) {
         if(startWith!=null){

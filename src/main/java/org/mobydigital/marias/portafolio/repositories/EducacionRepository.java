@@ -1,16 +1,22 @@
 package org.mobydigital.marias.portafolio.repositories;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Educacion;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class EducacionRepository implements CrudRepository<Educacion> {
+
+    @Autowired
     private EntityManager em;
 
-    public EducacionRepository(EntityManager em) {
-        this.em = em;
+    public EducacionRepository() {
+
     }
+
 
     @Override
     public List<Educacion> listar() {
