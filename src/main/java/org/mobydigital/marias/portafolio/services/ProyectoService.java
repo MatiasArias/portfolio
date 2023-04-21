@@ -26,7 +26,7 @@ public class ProyectoService implements EntityService<Proyecto>{
 
     public List<Proyecto> getListEntidades() {
         List<Proyecto> proyectos = new ArrayList<>();
-        List<String> archivoProyecto = archivoService.leerArchivo("C:\\Users\\Usuario\\Desktop\\WORK\\MobyDigital\\Academy\\portafolio\\src\\main\\java\\org\\mobydigital\\marias\\portafolio\\files\\Proyectos.csv");
+        List<String> archivoProyecto = archivoService.leerArchivo("src\\main\\java\\org\\mobydigital\\marias\\portafolio\\files\\Proyectos.csv");
         for(String linea : archivoProyecto){
             System.out.println(linea);
             proyectos.add(new Proyecto(Long.parseLong(linea.split(";")[0]),linea.split(";")[1],linea.split(";")[2],linea.split(";")[3],linea.split(";")[4],new Date(),linea.split(";")[6]));
