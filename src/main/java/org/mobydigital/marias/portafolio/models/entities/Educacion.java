@@ -1,6 +1,7 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
+import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
 
 import java.util.Objects;
 
@@ -32,8 +33,11 @@ public class Educacion {
         this.idEducacion = idEducacion;
         this.institucion = institucion;
         this.titulo = titulo;
+        if(comprobarFecha(añoIngreso,añoEgreso)){
         this.añoIngreso = añoIngreso;
         this.añoEgreso = añoEgreso;
+
+        }
         this.candidato = candidato;
     }
 
@@ -78,6 +82,13 @@ public class Educacion {
 
     public void setAñoEgreso(Integer añoEgreso) {
         this.añoEgreso = añoEgreso;
+    }
+
+    public boolean comprobarFecha(int añoIngreso,int añoEgreso){
+        if(añoIngreso>añoEgreso){
+            throw new FechaInvalidaException("El año de ingreso no puede ser mayor que el año de egreso");
+        }
+        return añoIngreso<añoEgreso;
     }
 
     @Override
