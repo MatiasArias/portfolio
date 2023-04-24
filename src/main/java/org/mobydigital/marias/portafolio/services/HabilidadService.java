@@ -19,23 +19,24 @@ public class HabilidadService {
     @Autowired
     private EntityManager em;
     @Autowired
-    private CrudRepository<Habilidad> repository;
+    private HabilidadRepository repository;
 
 
 
     public List<Habilidad> getListEntidades(String startWith) {
+        System.out.println(repository.findAll());
         if(startWith!=null){
-            return repository.listar().stream()
+            return repository.findAll().stream()
                     .filter(s->s.getTitulo().toUpperCase().contains(startWith.toUpperCase()))
                     .collect(Collectors.toList());
         }else{
-            return repository.listar();
+            return repository.findAll();
         }
     }
 
 
     public Habilidad porId(Long id) {
-        return repository.listar().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
+        return repository.findAll().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Habilidad not found"));
 
     }
@@ -43,27 +44,13 @@ public class HabilidadService {
 
     public Habilidad guardar(Habilidad habilidad) {
         if(!habilidad.getTitulo().isEmpty()){
-        try{
-            em.getTransaction().begin();
-            repository.guardar(habilidad);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+            repository.save(habilidad);
         }
         return habilidad;
     }
 
 
     public void eliminar(Long id) {
-        try{
-            em.getTransaction().begin();
-            repository.eliminar(id);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+        repository.delete(repository.findById(id).get());
     }
 }

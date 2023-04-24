@@ -1,12 +1,20 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.nio.file.LinkOption;
 import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name="candidato")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Candidato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +25,6 @@ public class Candidato {
 
     @OneToMany(mappedBy = "candidato", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Educacion> educacionList;
-
-    public Candidato() {
-    }
 
     public Candidato(Long idCandidato, String nombre, String apellido, String email) {
         this.idCandidato = idCandidato;

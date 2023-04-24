@@ -18,48 +18,34 @@ public class ExperienciaService {
     @Autowired
     private EntityManager em;
     @Autowired
-    private CrudRepository<Experiencia> repository;
+    private ExperienciaRepository repository;
 
 
     public List<Experiencia> getListEntidades(String experiencia) {
         if(experiencia!=null){
-            return repository.listar().stream()
+            return repository.findAll().stream()
                     .filter(e->e.getTitulo().toUpperCase().contains(experiencia.toUpperCase()))
                     .collect(Collectors.toList());
         }else{
-            return repository.listar();
+            return repository.findAll();
         }
     }
 
 
     public Experiencia porId(Long id) {
-        return repository.listar().stream()
+        return repository.findAll().stream()
                 .filter(e->e.getIdExperiencia().equals(id)).findAny()
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Experiencia no encontrada"));
     }
 
 
     public Experiencia guardar(Experiencia experiencia) {
-        try{
-            em.getTransaction().begin();
-            repository.guardar(experiencia);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
-        return experiencia;
+            repository.save(experiencia);
+            return experiencia;
     }
 
 
     public void eliminar(Long id) {
-        try{
-            em.getTransaction().begin();
-            repository.eliminar(id);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+        repository.delete(repository.findById(id).get());
     }
 }

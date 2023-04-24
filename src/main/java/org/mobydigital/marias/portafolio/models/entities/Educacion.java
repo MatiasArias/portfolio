@@ -1,11 +1,18 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 @Entity
 @Table(name="educacion")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,18 +33,6 @@ public class Educacion {
 
     public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
-    }
-
-    public Educacion(Long idEducacion, String institucion, String titulo, Integer añoIngreso, Integer añoEgreso, Candidato candidato) {
-        this.idEducacion = idEducacion;
-        this.institucion = institucion;
-        this.titulo = titulo;
-        this.añoIngreso = añoIngreso;
-        this.añoEgreso = añoEgreso;
-        this.candidato = candidato;
-    }
-
-    public Educacion() {
     }
 
     public Long getIdEducacion() {
