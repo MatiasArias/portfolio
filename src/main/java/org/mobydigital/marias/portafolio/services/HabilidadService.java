@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class HabilidadService implements EntityService<Habilidad> {
+public class HabilidadService {
 
     @Autowired
     private EntityManager em;
@@ -22,7 +22,7 @@ public class HabilidadService implements EntityService<Habilidad> {
     private CrudRepository<Habilidad> repository;
 
 
-    @Override
+
     public List<Habilidad> getListEntidades(String startWith) {
         if(startWith!=null){
             return repository.listar().stream()
@@ -33,14 +33,14 @@ public class HabilidadService implements EntityService<Habilidad> {
         }
     }
 
-    @Override
+
     public Habilidad porId(Long id) {
         return repository.listar().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Habilidad not found"));
 
     }
 
-    @Override
+
     public Habilidad guardar(Habilidad habilidad) {
         if(!habilidad.getTitulo().isEmpty()){
         try{
@@ -55,7 +55,7 @@ public class HabilidadService implements EntityService<Habilidad> {
         return habilidad;
     }
 
-    @Override
+
     public void eliminar(Long id) {
         try{
             em.getTransaction().begin();

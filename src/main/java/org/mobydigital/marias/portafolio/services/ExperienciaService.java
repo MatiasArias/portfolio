@@ -14,14 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ExperienciaService implements EntityService<Experiencia>{
+public class ExperienciaService {
     @Autowired
     private EntityManager em;
     @Autowired
     private CrudRepository<Experiencia> repository;
 
 
-    @Override
     public List<Experiencia> getListEntidades(String experiencia) {
         if(experiencia!=null){
             return repository.listar().stream()
@@ -32,14 +31,14 @@ public class ExperienciaService implements EntityService<Experiencia>{
         }
     }
 
-    @Override
+
     public Experiencia porId(Long id) {
         return repository.listar().stream()
                 .filter(e->e.getIdExperiencia().equals(id)).findAny()
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Experiencia no encontrada"));
     }
 
-    @Override
+
     public Experiencia guardar(Experiencia experiencia) {
         try{
             em.getTransaction().begin();
@@ -52,7 +51,7 @@ public class ExperienciaService implements EntityService<Experiencia>{
         return experiencia;
     }
 
-    @Override
+
     public void eliminar(Long id) {
         try{
             em.getTransaction().begin();

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CandidatoService implements EntityService<Candidato> {
+public class CandidatoService {
     @Autowired
     private EntityManager em;
 
@@ -20,7 +20,7 @@ public class CandidatoService implements EntityService<Candidato> {
     private CrudRepository<Candidato> repository;
 
 
-    @Override
+
     public List<Candidato> getListEntidades(String nombreSubstring) {
         if(nombreSubstring!=null){
             return repository.listar().stream()
@@ -35,14 +35,14 @@ public class CandidatoService implements EntityService<Candidato> {
         return repository.listar();
     }
 
-    @Override
+
     public Candidato porId(Long id) {
         return repository.listar().stream().filter(e->e.getIdCandidato().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Candidato not found"));
 
     }
 
-    @Override
+
     public Candidato guardar(Candidato candidato) {
         if(repository.listar().stream().anyMatch(e -> e.equals(candidato))){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"ese Candidato ya existe");
@@ -58,7 +58,7 @@ public class CandidatoService implements EntityService<Candidato> {
         return candidato;
     }
 
-    @Override
+
     public void eliminar(Long id) {
         try{
             em.getTransaction().begin();

@@ -10,19 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @Service
-public class ProyectoService implements EntityService<Proyecto>{
+public class ProyectoService {
     @Autowired
     private ArchivoService archivoService;
 
-    @Override
-    public List getListEntidades(String startWith) {
-        List<Proyecto> proyectos = new ArrayList<>();
-        proyectos.add(new Proyecto(0L,"Argentina Programa","Argentina Programa - Desarrollador Java Inicial - Rol de Tutor","http://localhost:8080/img/argentina-programa.jpg","https://github.com/MatiasArias/PronosticosDeportivos",new Date()," active"));
-        proyectos.add(new Proyecto(1L,"Concesionaria","Trabajo Integrador implementando Java","http://localhost:8080/img/concesionaria.jpg","https://github.com/GIGABYTE-FRVM/Concesionaria",new Date(),""));
-        proyectos.add(new Proyecto(2L,"Reinforcement Learning","Implemets SARSA,Qlearning,Dyna-Q","http://localhost:8080/img/qlearning.jpg","https://github.com/MatiasArias/reinforcement-learning",new Date(),""));
-        proyectos.add(new Proyecto(3L,"Clock","Primer proyecto Frontend","http://localhost:8080/img/clock.jpg","https://github.com/MatiasArias/reinforcement-learning",new Date(),""));
-        return proyectos;
-    }
+
 
     public List<Proyecto> getListEntidades() {
         List<Proyecto> proyectos = new ArrayList<>();
@@ -34,19 +26,19 @@ public class ProyectoService implements EntityService<Proyecto>{
         return proyectos;
     }
 
-    @Override
+
     public Proyecto porId(Long id) {
 
         return getListEntidades().stream().filter(p->p.getIdProyecto().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Proyeto no encontrado"));
     }
 
-    @Override
+
     public Proyecto guardar(Proyecto proyecto) {
         return null;
     }
 
-    @Override
+
     public void eliminar(Long id) {
 
     }
