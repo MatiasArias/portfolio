@@ -3,10 +3,12 @@ package org.mobydigital.marias.portafolio.models.entities;
 import jakarta.persistence.*;
 
 import java.nio.file.LinkOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
-@Table(name="candidato")
+@Table(name = "candidato")
 public class Candidato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +18,7 @@ public class Candidato {
     String email;
 
     @OneToMany(mappedBy = "candidato", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Educacion> educacionList;
+    private List<Educacion> educacionList = new ArrayList<>();
 
     public Candidato() {
     }
@@ -60,6 +62,18 @@ public class Candidato {
         this.email = email;
     }
 
+    public List<Educacion> getEducacionList() {
+        return educacionList;
+    }
+
+    public void setEducacionList(List<Educacion> educacionList) {
+        this.educacionList = educacionList;
+    }
+
+    public void addEducacion(Educacion educacion) {
+        educacionList.add(educacion);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,6 +89,6 @@ public class Candidato {
 
     @Override
     public String toString() {
-        return idCandidato +" - " + nombre +", " + apellido + " - " + email;
+        return idCandidato + " - " + nombre + ", " + apellido + " - " + email;
     }
 }
