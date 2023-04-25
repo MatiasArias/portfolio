@@ -14,8 +14,6 @@ public class ProyectoService {
     @Autowired
     private ArchivoService archivoService;
 
-
-
     public List<Proyecto> getListEntidades() {
         List<Proyecto> proyectos = new ArrayList<>();
         List<String> archivoProyecto = archivoService.leerArchivo("src\\main\\java\\org\\mobydigital\\marias\\portafolio\\files\\Proyectos.csv");

@@ -1,9 +1,7 @@
 package org.mobydigital.marias.portafolio.services;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Experiencia;
-import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.ExperienciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExperienciaService {
-    @Autowired
-    private EntityManager em;
+
     @Autowired
     private ExperienciaRepository repository;
 

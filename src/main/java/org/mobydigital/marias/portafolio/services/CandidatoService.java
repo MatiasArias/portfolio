@@ -3,7 +3,6 @@ package org.mobydigital.marias.portafolio.services;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Candidato;
 import org.mobydigital.marias.portafolio.repositories.CandidatoRepository;
-import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class CandidatoService {
-    @Autowired
-    private EntityManager em;
 
     @Autowired
     private CandidatoRepository repository;
-
-
 
     public List<Candidato> getListEntidades(String nombreSubstring) {
         if(nombreSubstring!=null){
