@@ -24,12 +24,13 @@ public class ExperienciaRepository implements CrudRepository<Experiencia> {
     }
 
     @Override
-    public void guardar(Experiencia experiencia) {
+    public Experiencia guardar(Experiencia experiencia) {
         if(experiencia.getIdExperiencia() !=null && experiencia.getIdExperiencia()>0){
             em.merge(experiencia);
         }else{
             em.persist(experiencia);
         }
+        return experiencia;
     }
 
     @Override

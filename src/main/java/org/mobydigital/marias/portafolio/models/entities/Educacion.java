@@ -1,11 +1,12 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
+import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
 
 import java.util.Objects;
 
 @Entity
-@Table(name="educacion")
+@Table(name = "educacion")
 public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +29,27 @@ public class Educacion {
         this.candidato = candidato;
     }
 
+    public Educacion(Long idEducacion, String institucion, String titulo, Integer añoIngreso, Integer añoEgreso) {
+        this.idEducacion = idEducacion;
+        this.institucion = institucion;
+        this.titulo = titulo;
+        if (comprobarFecha(añoIngreso, añoEgreso)) {
+            this.añoIngreso = añoIngreso;
+            this.añoEgreso = añoEgreso;
+        }
+    }
+
     public Educacion(Long idEducacion, String institucion, String titulo, Integer añoIngreso, Integer añoEgreso, Candidato candidato) {
         this.idEducacion = idEducacion;
         this.institucion = institucion;
         this.titulo = titulo;
-        this.añoIngreso = añoIngreso;
-        this.añoEgreso = añoEgreso;
+        if (comprobarFecha(añoIngreso, añoEgreso)) {
+            this.añoIngreso = añoIngreso;
+            this.añoEgreso = añoEgreso;
+
+        }
         this.candidato = candidato;
+        candidato.addEducacion(this);
     }
 
     public Educacion() {
@@ -80,6 +95,13 @@ public class Educacion {
         this.añoEgreso = añoEgreso;
     }
 
+    public boolean comprobarFecha(int añoIngreso, int añoEgreso) {
+        if (añoIngreso > añoEgreso) {
+            throw new FechaInvalidaException("El año de ingreso no puede ser mayor que el año de egreso");
+        }
+        return añoIngreso < añoEgreso;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,8 +117,8 @@ public class Educacion {
 
     @Override
     public String toString() {
-        return  idEducacion +" - " + institucion +
-                " - " + titulo  +
+        return idEducacion + " - " + institucion +
+                " - " + titulo +
                 " (" + añoIngreso +
                 "-" + añoEgreso +
                 ')';

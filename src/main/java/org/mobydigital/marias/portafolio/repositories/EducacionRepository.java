@@ -28,14 +28,15 @@ public class EducacionRepository implements CrudRepository<Educacion> {
         return em.find(Educacion.class,id);
     }
 
-    @Override
-    public void guardar(Educacion educacion) {
+
+    public Educacion guardar(Educacion educacion) {
         if (educacion.getIdEducacion() !=null && educacion.getIdEducacion() > 0){
             em.merge(educacion);
         }
         else{
         em.persist(educacion);
         }
+        return educacion;
     }
 
     @Override
