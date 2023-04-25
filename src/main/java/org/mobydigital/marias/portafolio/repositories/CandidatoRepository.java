@@ -28,13 +28,14 @@ public class CandidatoRepository implements CrudRepository<Candidato>{
     }
 
     @Override
-    public void guardar(Candidato candidato) {
+    public Candidato guardar(Candidato candidato) {
         if (candidato.getIdCandidato() !=null && candidato.getIdCandidato() > 0){
             em.merge(candidato);
         }
         else{
             em.persist(candidato);
         }
+        return candidato;
     }
 
     @Override

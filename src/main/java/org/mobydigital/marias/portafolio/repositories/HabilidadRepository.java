@@ -29,13 +29,14 @@ public class HabilidadRepository implements CrudRepository<Habilidad>{
     }
 
     @Override
-    public void guardar(Habilidad habilidad) {
+    public Habilidad guardar(Habilidad habilidad) {
         if (habilidad.getIdHabilidad() !=null && habilidad.getIdHabilidad() > 0){
             em.merge(habilidad);
         }
         else{
             em.persist(habilidad);
         }
+        return habilidad;
     }
 
     @Override
