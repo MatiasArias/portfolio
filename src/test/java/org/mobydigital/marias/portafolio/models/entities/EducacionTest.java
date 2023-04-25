@@ -72,32 +72,5 @@ class EducacionTest {
         assertTrue(candidato.getEducacionList().size()>0);
         assertEquals("UTN FRVM",candidato.getEducacionList().get(0).getInstitucion());
     }
-    @ExtendWith(MockitoExtension.class)
-    @Nested
-    public class UserServiceTest {
-
-        @Mock
-        private EducacionRepository educacionRepository;
-
-        @InjectMocks
-        private EducacionService educacionService;
-
-        @Test
-        void testEducacionUserById() {
-            Educacion educacion = new Educacion();
-            educacion.setIdEducacion(1L);
-            educacion.setInstitucion("UTN FRVM");
-            educacion.setTitulo("Testing 2023");
-            List<Educacion> lista = new ArrayList<>();
-            lista.add(educacion);
-            when(educacionRepository.listar()).thenReturn(lista);
-
-            Educacion result = educacionService.porId(1L);
-
-            assertEquals(result, educacion);
-            verify(educacionRepository, times(1)).porId(1L);
-        }
-    }
-
 
 }

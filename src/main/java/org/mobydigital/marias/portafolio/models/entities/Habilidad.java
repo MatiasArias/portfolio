@@ -1,27 +1,25 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
 @Table(name="habilidad")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Habilidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHabilidad;
     private String titulo;
     private String descripcion;
-
-    public Habilidad(Long idHabilidad, String titulo, String descripcion) {
-        this.idHabilidad = idHabilidad;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-    }
-
-    public Habilidad() {
-    }
-
     public Long getIdHabilidad() {
         return idHabilidad;
     }

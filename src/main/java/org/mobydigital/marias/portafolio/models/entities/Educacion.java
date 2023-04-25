@@ -1,12 +1,19 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "educacion")
+@Table(name="educacion")
+@Data
+@NoArgsConstructor
+@Builder
 public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +59,6 @@ public class Educacion {
         candidato.addEducacion(this);
     }
 
-    public Educacion() {
-    }
 
     public Long getIdEducacion() {
         return idEducacion;

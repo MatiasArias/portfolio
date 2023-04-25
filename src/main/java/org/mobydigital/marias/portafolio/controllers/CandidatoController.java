@@ -1,5 +1,6 @@
 package org.mobydigital.marias.portafolio.controllers;
 
+
 import jakarta.ws.rs.QueryParam;
 import org.mobydigital.marias.portafolio.models.entities.Candidato;
 import org.mobydigital.marias.portafolio.services.CandidatoService;

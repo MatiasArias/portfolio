@@ -1,9 +1,7 @@
 package org.mobydigital.marias.portafolio.services;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import org.mobydigital.marias.portafolio.models.entities.Habilidad;
-import org.mobydigital.marias.portafolio.repositories.CrudRepository;
 import org.mobydigital.marias.portafolio.repositories.HabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,56 +12,41 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class HabilidadService implements EntityService<Habilidad> {
+public class HabilidadService {
 
     @Autowired
-    private EntityManager em;
-    @Autowired
-    private CrudRepository<Habilidad> repository;
+    private HabilidadRepository repository;
 
 
-    @Override
+
     public List<Habilidad> getListEntidades(String startWith) {
+        System.out.println(repository.findAll());
         if(startWith!=null){
-            return repository.listar().stream()
+            return repository.findAll().stream()
                     .filter(s->s.getTitulo().toUpperCase().contains(startWith.toUpperCase()))
                     .collect(Collectors.toList());
         }else{
-            return repository.listar();
+            return repository.findAll();
         }
     }
 
-    @Override
+
     public Habilidad porId(Long id) {
-        return repository.listar().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
+        return repository.findAll().stream().filter(s->s.getIdHabilidad().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Habilidad not found"));
 
     }
 
-    @Override
+
     public Habilidad guardar(Habilidad habilidad) {
         if(!habilidad.getTitulo().isEmpty()){
-        try{
-            em.getTransaction().begin();
-            repository.guardar(habilidad);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+            repository.save(habilidad);
         }
         return habilidad;
     }
 
-    @Override
+
     public void eliminar(Long id) {
-        try{
-            em.getTransaction().begin();
-            repository.eliminar(id);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
+        repository.delete(repository.findById(id).get());
     }
 }
