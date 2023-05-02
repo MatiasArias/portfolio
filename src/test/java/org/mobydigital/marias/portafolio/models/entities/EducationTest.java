@@ -20,21 +20,21 @@ class EducationTest {
 
     @Test
     void testInstitucionEducacion() {
-        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023,2028,null);
         assertEquals("UTN FRVM", education.getInstitution());
     }
 
     @Test
     void testIdEducacion() {
-        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023,null);
         assertFalse(education.getIdEducation().compareTo(0L) < 0);
         assertTrue(education.getIdEducation().compareTo(0L) > 0);
     }
 
     @Test
     void testReferenciaEducacion() {
-        Education education1 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
-        Education education2 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        Education education1 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023,null);
+        Education education2 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023,null);
         assertEquals(education1, education2);
         education2.setDegree("Universidad Tecnologica Nacional - FRVM");
         assertNotEquals(education1, education2);
@@ -43,7 +43,7 @@ class EducationTest {
     @Test
     void testFechaInvalidaException() {
         Exception exception = assertThrows(FechaInvalidaException.class, () -> {
-            Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2028, 2023);
+            Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2028, 2023,null);
         });
         String actual = exception.getMessage();
         String esperado = "El año de ingreso no puede ser mayor que el año de egreso";
@@ -52,12 +52,12 @@ class EducationTest {
 
     @Test
     void testRelacionCandidatoEducacion(){
-        Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com");
+        Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com",null);
         Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023, candidato);
-        assertEquals("Matias", education.getCandidato().getNombre());
-        assertNotNull(candidato.getEducacionList());
-        assertTrue(candidato.getEducacionList().size()>0);
-        assertEquals("UTN FRVM",candidato.getEducacionList().get(0).getInstitucion());
+        assertEquals("Matias", education.getCandidate().getName());
+        assertNotNull(candidato.getEducationList());
+        assertTrue(candidato.getEducationList().size()>0);
+        assertEquals("UTN FRVM",candidato.getEducationList().get(0).getInstitution());
     }
 
 }
