@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mobydigital.marias.portafolio.controllers.EducacionController;
-import org.mobydigital.marias.portafolio.models.views.EducacionDto;
-import org.mobydigital.marias.portafolio.services.impl.EducacionServiceImpl;
+import org.mobydigital.marias.portafolio.models.views.EducationDto;
+import org.mobydigital.marias.portafolio.services.impl.EducationServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -17,32 +16,28 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
-import org.springframework.mock.http.server.reactive.MockServerHttpRequest.BodyBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class EducacionControllerTest {
+public class EducationControllerTest {
 
 
     private MockMvc mockMvc;
     @Mock
-    private EducacionServiceImpl educacionService;
+    private EducationServiceImpl educacionService;
 
     @InjectMocks
-    private EducacionController educacionController;
+    private EducationController educacionController;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
@@ -53,10 +48,10 @@ public class EducacionControllerTest {
     @Test
     @DisplayName("GET http://localhost:8080/educaciones - Success")
     void testEducaciones() throws Exception {
-        EducacionDto educacionDto = new EducacionDto();
-        educacionDto.setTitulo("Testing");
-        educacionDto.setInstitucion("UTN FRVM");
-        List<EducacionDto> educaciones = new ArrayList<>();
+        EducationDto educacionDto = new EducationDto();
+        educacionDto.setDegree("Testing");
+        educacionDto.setInstitution("UTN FRVM");
+        List<EducationDto> educaciones = new ArrayList<>();
         educaciones.add(educacionDto);
 
         when(educacionService.findAll()).thenReturn(educaciones);
@@ -70,11 +65,11 @@ public class EducacionControllerTest {
     @Test
     @DisplayName("GET http://localhost:8080/educaciones/1 - Success")
     void testEducacionById() throws Exception {
-        EducacionDto educacionDto = new EducacionDto();
-        educacionDto.setTitulo("Testing");
-        educacionDto.setInstitucion("UTN FRVM");
+        EducationDto educacionDto = new EducationDto();
+        educacionDto.setDegree("Testing");
+        educacionDto.setInstitution("UTN FRVM");
 
-        when(educacionService.getEducacionById(1L)).thenReturn(educacionDto);
+        when(educacionService.getEducationById(1L)).thenReturn(educacionDto);
 
         mockMvc.perform(get("/educaciones/1"))
                 .andExpect(status().isOk())
@@ -85,39 +80,39 @@ public class EducacionControllerTest {
     @Test
     @DisplayName("POST http://localhost:8080/educaciones/create - Success")
     void testCreateEducacion() throws Exception {
-        EducacionDto educacionDto = new EducacionDto();
-        educacionDto.setTitulo("Testing");
-        educacionDto.setInstitucion("UTN FRVM");
+        EducationDto educationDto = new EducationDto();
+        educationDto.setDegree("Testing");
+        educationDto.setInstitution("UTN FRVM");
 
-        when(educacionService.createEducacion(Mockito.eq(educacionDto))).thenReturn(educacionDto);
+        when(educacionService.createEducation(Mockito.eq(educationDto))).thenReturn(educationDto);
 
 
         mockMvc.perform(post("/educaciones/create")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(educacionDto)))
+                        .content(objectMapper.writeValueAsString(educationDto)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.titulo", is(equalTo(educacionDto.getTitulo()))))
-                .andExpect(jsonPath("$.institucion", is(equalTo(educacionDto.getInstitucion()))));
+                .andExpect(jsonPath("$.degree", is(equalTo(educationDto.getDegree()))))
+                .andExpect(jsonPath("$.institution", is(equalTo(educationDto.getInstitution()))));
     }
 
     @Test
-    @DisplayName("UPDATE http://localhost:8080/educaciones/update/1 - Success")
-    void testUpdateEducacion() throws Exception {
-        EducacionDto educacionDtoPut = new EducacionDto("UTN FRVM","Testing",2020,2021);
+    @DisplayName("UPDATE http://localhost:8080/educationes/update/1 - Success")
+    void testUpdateEducation() throws Exception {
+        EducationDto educationDtoPut = new EducationDto("UTN FRVM","Testing",2020,2021);
 
-        mockMvc.perform(put("/educaciones/update/1")
+        mockMvc.perform(put("/educations/update/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(educacionDtoPut)))
+                        .content(objectMapper.writeValueAsString(educationDtoPut)))
                         .andExpect(status().isOk());
-        Mockito.verify(educacionService,Mockito.times(1)).updateEducacion(eq(1L),eq(educacionDtoPut));
+        Mockito.verify(educacionService,Mockito.times(1)).updateEducation(eq(1L),eq(educationDtoPut));
     }
 
     @Test
-    @DisplayName("DELETE http://localhost:8080/educaciones/delete/1 - Success")
+    @DisplayName("DELETE http://localhost:8080/educations/delete/1 - Success")
     void testDeleteEducacion() throws Exception {
-        mockMvc.perform(delete("/educaciones/delete/1"))
+        mockMvc.perform(delete("/educations/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(educacionService,Mockito.times(1)).deleteEducacion(eq(1L));
+        Mockito.verify(educacionService,Mockito.times(1)).deleteEducation(eq(1L));
     }
 
 }

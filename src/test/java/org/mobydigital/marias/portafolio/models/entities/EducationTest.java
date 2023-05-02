@@ -6,44 +6,44 @@ import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
-class EducacionTest {
+class EducationTest {
 
 
     @Test
     void testNombreEducacion() {
-        Educacion educacion = new Educacion();
-        educacion.setTitulo("Testing 2023");
-        String real = educacion.getTitulo();
+        Education education = new Education();
+        education.setDegree("Testing 2023");
+        String real = education.getDegree();
         String esperado = "Testing 2023";
         assertEquals(esperado, real);
     }
 
     @Test
     void testInstitucionEducacion() {
-        Educacion educacion = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
-        assertEquals("UTN FRVM", educacion.getInstitucion());
+        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        assertEquals("UTN FRVM", education.getInstitution());
     }
 
     @Test
     void testIdEducacion() {
-        Educacion educacion = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
-        assertFalse(educacion.getIdEducacion().compareTo(0L) < 0);
-        assertTrue(educacion.getIdEducacion().compareTo(0L) > 0);
+        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        assertFalse(education.getIdEducation().compareTo(0L) < 0);
+        assertTrue(education.getIdEducation().compareTo(0L) > 0);
     }
 
     @Test
     void testReferenciaEducacion() {
-        Educacion educacion1 = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
-        Educacion educacion2 = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
-        assertEquals(educacion1, educacion2);
-        educacion2.setTitulo("Universidad Tecnologica Nacional - FRVM");
-        assertNotEquals(educacion1, educacion2);
+        Education education1 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        Education education2 = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023);
+        assertEquals(education1, education2);
+        education2.setDegree("Universidad Tecnologica Nacional - FRVM");
+        assertNotEquals(education1, education2);
     }
 
     @Test
     void testFechaInvalidaException() {
         Exception exception = assertThrows(FechaInvalidaException.class, () -> {
-            Educacion educacion = new Educacion(912L, "UTN FRVM", "Testing 2023", 2028, 2023);
+            Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2028, 2023);
         });
         String actual = exception.getMessage();
         String esperado = "El año de ingreso no puede ser mayor que el año de egreso";
@@ -53,8 +53,8 @@ class EducacionTest {
     @Test
     void testRelacionCandidatoEducacion(){
         Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com");
-        Educacion educacion = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023, candidato);
-        assertEquals("Matias",educacion.getCandidato().getNombre());
+        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023, candidato);
+        assertEquals("Matias", education.getCandidato().getNombre());
         assertNotNull(candidato.getEducacionList());
         assertTrue(candidato.getEducacionList().size()>0);
         assertEquals("UTN FRVM",candidato.getEducacionList().get(0).getInstitucion());

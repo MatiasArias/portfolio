@@ -26,7 +26,7 @@ public class EducationController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<EducationDto> guardarEducacion(@RequestBody EducationDto education){
+    public ResponseEntity<EducationDto> createEducation(@RequestBody EducationDto education){
         return new ResponseEntity<EducationDto>(educationService.createEducation(education),HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
@@ -35,7 +35,7 @@ public class EducationController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id){
+    public ResponseEntity<Object> deleteEducation(@PathVariable("id") Long id){
         educationService.deleteEducation(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

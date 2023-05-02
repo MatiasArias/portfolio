@@ -3,63 +3,59 @@ package org.mobydigital.marias.portafolio.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mobydigital.marias.portafolio.models.entities.Educacion;
-import org.mobydigital.marias.portafolio.models.views.EducacionDto;
-import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
-import org.mobydigital.marias.portafolio.services.EducacionService;
-import org.mobydigital.marias.portafolio.services.impl.EducacionServiceImpl;
+import org.mobydigital.marias.portafolio.models.entities.Education;
+import org.mobydigital.marias.portafolio.models.views.EducationDto;
+import org.mobydigital.marias.portafolio.repositories.EducationRepository;
+import org.mobydigital.marias.portafolio.services.impl.EducationServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EducacionServicesTest {
+public class EducationServicesTest {
 
     @Mock
-    private EducacionRepository educacionRepository;
+    private EducationRepository educacionRepository;
 
     @InjectMocks
-    private EducacionServiceImpl educacionService;
+    private EducationServiceImpl educacionService;
 
     @Test
     void testEducacionById() {
-        Educacion educacion = new Educacion();
-        educacion.setInstitucion("UTN FRVM");
-        educacion.setTitulo("Testing 2023");
-        when(educacionRepository.findById(1L)).thenReturn(Optional.of(educacion));
+        Education education = new Education();
+        education.setInstitution("UTN FRVM");
+        education.setDegree("Testing 2023");
+        when(educacionRepository.findById(1L)).thenReturn(Optional.of(education));
 
-        EducacionDto result = educacionService.getEducacionById(1L);
+        EducationDto result = educacionService.getEducationById(1L);
 
-        assertEquals(result.getInstitucion(), educacion.getInstitucion());
-        assertEquals(result.getTitulo(), educacion.getTitulo());
+        assertEquals(result.getInstitution(), education.getInstitution());
+        assertEquals(result.getDegree(), education.getDegree());
         verify(educacionRepository, times(1)).findById(1L);
     }
 
     @Test
     void testCreateEducacion() {
-        Educacion educacion = new Educacion();
-        educacion.setInstitucion("UTN FRVM");
-        educacion.setTitulo("Testing");
+        Education education = new Education();
+        education.setInstitution("UTN FRVM");
+        education.setDegree("Testing");
 
-        when(educacionRepository.save(educacion)).thenReturn(educacion);
+        when(educacionRepository.save(education)).thenReturn(education);
 
-        EducacionDto educacionDTO = new EducacionDto();
-        educacionDTO.setInstitucion("UTN FRVM");
-        educacionDTO.setTitulo("Testing");
+        EducationDto educacionDTO = new EducationDto();
+        educacionDTO.setInstitution("UTN FRVM");
+        educacionDTO.setDegree("Testing");
 
-        EducacionDto result = educacionService.createEducacion(educacionDTO);
+        EducationDto result = educacionService.createEducation(educacionDTO);
 
-        assertEquals(result.getInstitucion(), educacion.getInstitucion());
-        assertEquals(result.getTitulo(), educacion.getTitulo());
-        verify(educacionRepository, times(1)).save(educacion);
+        assertEquals(result.getInstitution(), education.getInstitution());
+        assertEquals(result.getDegree(), education.getDegree());
+        verify(educacionRepository, times(1)).save(education);
     }
 }
 
