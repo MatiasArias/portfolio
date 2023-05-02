@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Matias Arias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link rel="stylesheet" th:href="@{/style.css}" href="style.css"/>
 </head>
 <body class="regular-progression colorhint-gradient">
-<!--<p><a href="/parametros/url-get?puesto=Desarrollador Backend">Enviando parametro GET puesto</a></p>-->
-<!--<p><a href="/cabeceras-request">Cabeceras HTTP</a></p>-->
-<!--<p><a href="/educacion.xls">Educación [Excel]</a></p>-->
-<!--<p><a href="/educaciones.json">Educación [JSON]</a></p>-->
-<!--<p><a href="/hora">Hora actualizada</a></p>-->
-<!--<p><a href="/redirigir">Redirigir a educacion.html</a></p>-->
-<!--<p><a href="/despachar">Despachar a educacion.html</a></p>-->
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-dark" >
     <div class="container-fluid">
-        <a class="navbar-brand link" href="#">Matias Arias</a>
+        <a class="navbar-brand link" href="https://github.com/MatiasArias">Matias Arias</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active  link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  link" href="#">Proyectos</a>
+                    <a class="nav-link" href="https://github.com/MatiasArias?tab=repositories">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  link" href="#">Contacto</a>
+                    <a class="nav-link" href="mailto:matiasarias384@gmail.com">Contacto</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -43,31 +36,45 @@
 
     <h1>Matias Arias - Template</h1>
     <h2>Desarrollador Backend</h2>
-    <div class="row shadow-sm">
-        <h4><a  class="link" href="/experiencias">Experiencias</a></h4>
+<div>
+    <div class="card m-4">
+        <h3 class="card-header" ><a class="text-decoration-none text-white" href="/experiencias">Experiencias</a></h3>
+        <div class="card-body">
+            <p class="card-text"> Como tutor en Argentina Programa, compartí conocimientos y habilidades en programación Java con estudiantes. Posteriormente, como trainee y desarrollador backend en MobyDigital, adquirí y apliqué experiencia en el desarrollo de aplicaciones backend, trabajo en equipo y colaboración en proyectos avanzados.</p>
+            <a href="/experiences" class="btn btn-primary">Ver experiencias</a>
+            <a href="/experiences/form/create" class="btn btn-primary">New</a>
+        </div>
     </div>
-    <div class="row shadow-sm">
-    <h4><a class="link"  href="/habilidades">Habilidades</a></h4>
+    <div class="card m-4">
+        <h3 class="card-header" ><a class="text-decoration-none text-white" href="/skills">Habilidades</a></h3>
+        <div class="card-body">
+            <p class="card-text"> Soy un desarrollador backend Java con habilidades en programación Java, manejo de bases de datos, frameworks, arquitecturas de software, debugging, versionamiento de código y comunicación en equipo. Comprometido en crear soluciones robustas y eficientes</p>
+            <a href="/skills" class="btn btn-primary">Ver habilidades</a>
+            <a href="/skills/form/create" class="btn btn-primary">New</a>
+        </div>
     </div>
-    <div class="row shadow-sm">
-    <h4><a class="link" href="/educaciones">Educación</a></h4>
+    <div class="card m-4">
+        <h3 class="card-header" ><a class="text-decoration-none text-white" href="/educaciones">Educación</a></a></h3>
+        <div class="card-body">
+            <p class="card-text"> Completé mis estudios de Bachiller en Informática en el Instituto Privado Manuel Belgrano, lo que me proporcionó una base sólida en los fundamentos de la informática y la programación. Actualmente, estoy en mi quinto año de estudios de Ingeniería en Sistemas de Información en la UTN FRVM, donde he ampliado mis conocimientos y habilidades en áreas como la arquitectura de software, la seguridad informática y la inteligencia artificial. Estoy comprometido en continuar aprendiendo y creciendo en mi carrera </p>
+            <a href="/educations" class="btn btn-primary">Ver educación</a>
+            <a href="/educations/form/create" class="btn btn-primary">New</a>
+        </div>
     </div>
-    <div class="row shadow-sm">
-    <h4><a class="link" href="/habilidades/cargarHabilidad">Cargar habilidad</a></h4>
-    </div>
+</div>
 </div>
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators" >
-            <button  th:each="proyecto : ${proyectos}" type="button" data-bs-target="#carouselExampleCaptions" class="" th:data-bs-slide-to="${proyecto.idProyecto}" th:class="${proyecto.active}" th:aria-current="${proyecto.active.equals(' active')}" th:aria-label="@{Slide}+' '+${proyecto.idProyecto+1}"></button>
+            <button  th:each="project : ${projects}" type="button" data-bs-target="#carouselExampleCaptions" class="" th:data-bs-slide-to="${project.idProject}" th:class="${project.active}" th:aria-current="${project.active.equals(' active')}" th:aria-label="@{Slide}+' '+${project.idProject+1}"></button>
         </div>
         <div class="carousel-inner">
-            <div  th:each="proyecto : ${proyectos}" class="carousel-item" th:class="@{carousel-item}+${proyecto.active}">
-                <a th:href="@{/proyecto?id=}+${proyecto.idProyecto}">
-                <img th:src="${proyecto.urlImagen}" src="img/concesionaria.jpg" class="d-block w-100" alt="...">
+            <div  th:each="project : ${projects}" class="carousel-item" th:class="@{carousel-item}+${project.active}">
+                <a th:href="@{/project?id=}+${project.idProject}">
+                <img th:src="${project.urlImage}" src="img/concesionaria.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5 th:text="${proyecto.titulo}">Concesionaria</h5>
-                    <p th:text="${proyecto.descripcion}">Some representative placeholder content for the first slide.</p>
+                    <h5 th:text="${project.name}">Concesionaria</h5>
+                    <p th:text="${project.description}">Some representative placeholder content for the first slide.</p>
                 </div>
                 </a>
             </div>
@@ -92,6 +99,7 @@
         </ul>
     </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>

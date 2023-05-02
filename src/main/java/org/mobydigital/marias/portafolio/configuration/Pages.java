@@ -2,9 +2,11 @@ package org.mobydigital.marias.portafolio.configuration;
 
 public class Pages {
     public static String HOME="index";
-    public static String PROYECTO="proyecto";
+    public static String PROJECT ="project";
     public static String LOGIN="login";
-    public static String BUSCAR="buscar";
-    public static String CARGAR_HABILIDAD="form";
+    public static String SEARCH="buscar";
+    public static String FORM_SKILL ="/forms/form-skill";
+    public static String FORM_EXPERIENCE ="/forms/form-experience";
+    public static String FORM_EDUCATION ="/forms/form-education";
 
 }
