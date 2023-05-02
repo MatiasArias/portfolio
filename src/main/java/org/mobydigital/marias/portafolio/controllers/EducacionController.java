@@ -17,7 +17,7 @@ public class EducacionController {
     private EducacionService educacionService;
 
     @GetMapping
-    public ResponseEntity<List<EducacionDto>> getEducaciones(@RequestParam("educacion") String educacion){
+    public ResponseEntity<List<EducacionDto>> getEducaciones(){
         return new ResponseEntity<List<EducacionDto>>(educacionService.findAll(), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
