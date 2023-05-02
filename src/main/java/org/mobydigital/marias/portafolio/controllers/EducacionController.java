@@ -1,6 +1,6 @@
 package org.mobydigital.marias.portafolio.controllers;
 
-import jakarta.ws.rs.QueryParam;
+
 import org.mobydigital.marias.portafolio.models.views.EducacionDto;
 import org.mobydigital.marias.portafolio.services.EducacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class EducacionController {
     private EducacionService educacionService;
 
     @GetMapping
-    public ResponseEntity<List<EducacionDto>> getEducaciones(@QueryParam("educacion") String educacion){
+    public ResponseEntity<List<EducacionDto>> getEducaciones(@RequestParam("educacion") String educacion){
         return new ResponseEntity<List<EducacionDto>>(educacionService.findAll(), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")

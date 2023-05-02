@@ -1,6 +1,6 @@
 package org.mobydigital.marias.portafolio.controllers;
 
-import jakarta.ws.rs.QueryParam;
+
 import org.mobydigital.marias.portafolio.configuration.Pages;
 import org.mobydigital.marias.portafolio.models.entities.Habilidad;
 import org.mobydigital.marias.portafolio.services.HabilidadService;
@@ -20,7 +20,7 @@ public class HabilidadController {
     private HabilidadService habilidadService;
 
     @GetMapping
-    public ResponseEntity<List<Habilidad>> getHabilidades(@QueryParam("habilidad") String habilidad){
+    public ResponseEntity<List<Habilidad>> getHabilidades(@RequestParam("habilidad") String habilidad){
         return new ResponseEntity<List<Habilidad>>(habilidadService.getListEntidades(habilidad), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")

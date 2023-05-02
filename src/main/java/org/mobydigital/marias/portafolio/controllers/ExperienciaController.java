@@ -1,6 +1,6 @@
 package org.mobydigital.marias.portafolio.controllers;
 
-import jakarta.ws.rs.QueryParam;
+
 import org.mobydigital.marias.portafolio.models.entities.Experiencia;
 import org.mobydigital.marias.portafolio.services.ExperienciaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ExperienciaController {
     private ExperienciaService experienciaService;
 
     @GetMapping
-    public ResponseEntity<List<Experiencia>> getExperiencias(@QueryParam("experiencia") String experiencia){
+    public ResponseEntity<List<Experiencia>> getExperiencias(@RequestParam("experiencia") String experiencia){
         return new ResponseEntity<List<Experiencia>>(experienciaService.getListEntidades(experiencia), HttpStatus.OK);
     }
 
