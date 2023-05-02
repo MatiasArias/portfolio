@@ -9,9 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class EducacionDto {
-    private String institucion;
-    private String titulo;
-    private Integer añoIngreso;
-    private Integer añoEgreso;
+public class EducationDto {
+    private String institution;
+    private String degree;
+    private Integer yearSince;
+    private Integer graduation;
 }
