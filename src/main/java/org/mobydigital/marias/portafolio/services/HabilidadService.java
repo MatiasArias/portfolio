@@ -17,10 +17,7 @@ public class HabilidadService {
     @Autowired
     private HabilidadRepository repository;
 
-
-
     public List<Habilidad> getListEntidades(String startWith) {
-        System.out.println(repository.findAll());
         if(startWith!=null){
             return repository.findAll().stream()
                     .filter(s->s.getTitulo().toUpperCase().contains(startWith.toUpperCase()))

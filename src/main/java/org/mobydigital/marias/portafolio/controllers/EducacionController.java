@@ -29,7 +29,7 @@ public class EducacionController {
     public ResponseEntity<EducacionDto> guardarEducacion(@RequestBody EducacionDto educacion){
         return new ResponseEntity<EducacionDto>(educacionService.createEducacion(educacion),HttpStatus.CREATED);
     }
-    @PutMapping("/delete/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Object> actualizarEducacion(@PathVariable Long id,@RequestBody EducacionDto educacion){
         educacionService.updateEducacion(id,educacion);
         return new ResponseEntity<>(HttpStatus.OK);

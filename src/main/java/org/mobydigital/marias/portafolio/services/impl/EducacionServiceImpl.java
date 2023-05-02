@@ -25,7 +25,7 @@ public class EducacionServiceImpl implements EducacionService {
     private EducacionRepository educacionRepository;
     private final ModelMapper modelMapper = new ModelMapper();
 
-    private static final String ID_NOT_FOUND = "Knowledge was not found by id - id: ";
+    private static final String ID_NOT_FOUND = "Educacion was not found by id - id: ";
     @Override
     public EducacionDto createEducacion(EducacionDto educacionDto) {
         educacionRepository.save(modelMapper.map(educacionDto, Educacion.class));
@@ -43,7 +43,7 @@ public class EducacionServiceImpl implements EducacionService {
     public void deleteEducacion(Long id) {
         Optional.ofNullable(getEducacionById(id))
                 .ifPresentOrElse(
-                        knowledge -> educacionRepository.deleteById(id),
+                        educacion -> educacionRepository.deleteById(id),
                         () -> {
                             log.error(ID_NOT_FOUND + id);
                             throw new EntityNotFoundException(ID_NOT_FOUND + id);

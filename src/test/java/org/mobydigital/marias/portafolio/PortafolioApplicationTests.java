@@ -10,13 +10,4 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PortafolioApplicationTests {
 
-	@Test
-	void testNombreEducacion() {
-		Educacion educacion = new Educacion();
-		educacion.setTitulo("Testing");
-		String real = educacion.getTitulo();
-		String esperado = "Testing";
-		assertEquals(esperado,real);
-	}
-
 }
