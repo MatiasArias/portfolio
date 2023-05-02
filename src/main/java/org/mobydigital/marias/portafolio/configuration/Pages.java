@@ -5,7 +5,7 @@ public class Pages {
     public static String PROJECT ="project";
     public static String LOGIN="login";
     public static String SEARCH="buscar";
-    public static String FORM ="form";
+    public static String FORM_SKILL ="/forms/form-skill";
     public static String FORM_EXPERIENCE ="/forms/form-experience";
 
 }

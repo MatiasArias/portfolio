@@ -3,6 +3,7 @@ package org.mobydigital.marias.portafolio.controllers;
 
 import org.mobydigital.marias.portafolio.configuration.Pages;
 import org.mobydigital.marias.portafolio.models.entities.Skill;
+import org.mobydigital.marias.portafolio.models.views.ExperienceDto;
 import org.mobydigital.marias.portafolio.models.views.SkillDto;
 import org.mobydigital.marias.portafolio.services.impl.SkillServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -29,10 +31,16 @@ public class SkillController {
         return new ResponseEntity<SkillDto>(skillService.getSkillById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/form")
+    @GetMapping("/form/create")
     public ModelAndView createSkillView(){
-        ModelAndView modelAndView = new ModelAndView(Pages.FORM);
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         return modelAndView.addObject("skill",new Skill());
+    }
+    @PostMapping("/form/create")
+    public RedirectView saveExperienceForm(SkillDto skill, Model model){
+        skillService.createSkill(skill);
+        model.addAttribute("skills",skillService.findAll());
+        return new RedirectView("/skills");
     }
     @PostMapping("/create")
     public ResponseEntity<Object> createSkill(SkillDto skill, Model model){
