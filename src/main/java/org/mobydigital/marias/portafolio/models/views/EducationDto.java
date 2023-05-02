@@ -12,6 +12,6 @@ import lombok.*;
 public class EducationDto {
     private String institution;
     private String degree;
-    private Integer yearSince;
+    private Integer yearEntry;
     private Integer graduation;
 }

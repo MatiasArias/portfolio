@@ -26,11 +26,6 @@ public class ExperienceController {
         return new ResponseEntity<List<ExperienceDto>>(experienceService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/form/create")
-    public ModelAndView createExperienceView(){
-        ModelAndView modelAndView = new ModelAndView(Pages.FORM_EXPERIENCE);
-        return modelAndView.addObject("experience",new ExperienceDto());
-    }
 
     @GetMapping(value="/{id}")
     public ResponseEntity<ExperienceDto> getExperiencePorId(@PathVariable("id") Long id){
@@ -41,6 +36,11 @@ public class ExperienceController {
     public ResponseEntity<ExperienceDto> saveExperience(@RequestBody ExperienceDto experience){
         System.out.println(experience.getName());
         return new ResponseEntity<ExperienceDto>(experienceService.createExperience(experience),HttpStatus.CREATED);
+    }
+    @GetMapping("/form/create")
+    public ModelAndView createExperienceView(){
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_EXPERIENCE);
+        return modelAndView.addObject("experience",new ExperienceDto());
     }
     @PostMapping("/form/create")
     public RedirectView saveExperienceForm(ExperienceDto experience, Model model){

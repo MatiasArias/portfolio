@@ -7,5 +7,6 @@ public class Pages {
     public static String SEARCH="buscar";
     public static String FORM_SKILL ="/forms/form-skill";
     public static String FORM_EXPERIENCE ="/forms/form-experience";
+    public static String FORM_EDUCATION ="/forms/form-education";
 
 }
