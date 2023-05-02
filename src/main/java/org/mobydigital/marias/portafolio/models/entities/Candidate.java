@@ -27,7 +27,7 @@ public class Candidate {
 
     String email;
 
-    @OneToMany(mappedBy = "candidates", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Education> educationList = new ArrayList<>();
 
 }

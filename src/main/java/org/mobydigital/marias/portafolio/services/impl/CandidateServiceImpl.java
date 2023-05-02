@@ -1,53 +1,76 @@
-package org.mobydigital.marias.portafolio.services;
+package org.mobydigital.marias.portafolio.services.impl;
 
+import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.mobydigital.marias.portafolio.models.entities.Candidate;
+import org.mobydigital.marias.portafolio.models.views.CandidateDto;
+import org.mobydigital.marias.portafolio.models.views.SkillDto;
 import org.mobydigital.marias.portafolio.repositories.CandidateRepository;
+import org.mobydigital.marias.portafolio.services.CandidateService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CandidatoService {
+@Slf4j
+public class CandidateServiceImpl implements CandidateService {
 
     @Autowired
     private CandidateRepository repository;
 
-    public List<Candidate> getListEntidades(String nombreSubstring) {
-        if(nombreSubstring!=null){
-            return repository.findAll().stream()
-                    .filter(c->(c.getName()+" "+c.getLastname()).startsWith(nombreSubstring))
-                    .collect(Collectors.toList());
-        }else{
-            return repository.findAll();
-        }
+    private final ModelMapper modelMapper = new ModelMapper();
+
+    private static final String ID_NOT_FOUND = "Skill was not found by id - id: ";
+    @Override
+    public CandidateDto createCandidate(CandidateDto candidateDto) {
+        repository.save(modelMapper.map(candidateDto, Candidate.class));
+        return candidateDto;
     }
 
-    public List<Candidate> getListEntidades() {
-        return repository.findAll();
+    @Override
+    public List<CandidateDto> findAll() {
+        return repository.findAll().stream()
+                .map(candidate -> modelMapper.map(candidate, CandidateDto.class))
+                .collect(Collectors.toList());
     }
 
-
-    public Candidate porId(Long id) {
-        return repository.findAll().stream().filter(e->e.getIdCandidate().equals(id)).findAny()
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Candidato not found"));
-
+    @Override
+    public void deleteCandidate(Long id) {
+        Optional.ofNullable(getCandidateById(id)).ifPresentOrElse(
+                candidate -> repository.deleteById(id),
+                () -> {
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                }
+        );
     }
 
-
-    public Candidate guardar(Candidate candidato) {
-        if(repository.findAll().stream().anyMatch(e -> e.equals(candidato))){
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"ese Candidato ya existe");
-        }
-            repository.save(candidato);
-        return candidato;
+    @Override
+    public CandidateDto getCandidateById(Long id) {
+        return repository.findById(id).map(
+               candidate -> modelMapper.map(candidate,CandidateDto.class
+                )).orElseThrow(()->{
+            log.error(ID_NOT_FOUND+id);
+            return new EntityNotFoundException(ID_NOT_FOUND + id);
+        });
     }
 
-
-    public void eliminar(Long id) {
-            repository.delete(repository.findById(id).get());
+    @Override
+    public void updateCandidate(Long id, CandidateDto candidateDto) {
+        repository.findById(id).ifPresentOrElse(
+                candidate -> {
+                    candidate.setName(candidateDto.getName());
+                    candidate.setLastname(candidateDto.getLastname());
+                    candidate.setEmail(candidateDto.getEmail());
+                    repository.save(candidate);
+                },()->{
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                }
+        );
     }
 }
