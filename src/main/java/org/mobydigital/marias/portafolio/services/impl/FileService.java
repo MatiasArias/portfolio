@@ -1,4 +1,4 @@
-package org.mobydigital.marias.portafolio.services;
+package org.mobydigital.marias.portafolio.services.impl;
 
 import org.springframework.stereotype.Service;
 
@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ArchivoService {
-    public List<String> leerArchivo(String ruta){
-        List<String> lecturaArchivo = new ArrayList<>();
-        File archivo = new File(ruta);
+public class FileService {
+    public List<String> readFile(String ruta){
+        List<String> fileRead = new ArrayList<>();
+        File file = new File(ruta);
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             String linea;
             while((linea = reader.readLine())!=null){
-                lecturaArchivo.add(linea);
+                fileRead.add(linea);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return lecturaArchivo;
+        return fileRead;
     }
 }

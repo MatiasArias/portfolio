@@ -31,7 +31,7 @@ public class SkillController {
 
     @GetMapping("/form")
     public ModelAndView createSkillView(){
-        ModelAndView modelAndView = new ModelAndView(Pages.CARGAR_HABILIDAD);
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM);
         return modelAndView.addObject("skill",new Skill());
     }
     @PostMapping("/create")
