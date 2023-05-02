@@ -1,8 +1,7 @@
 package org.mobydigital.marias.portafolio.services;
 
-import jakarta.persistence.EntityManager;
-import org.mobydigital.marias.portafolio.models.entities.Candidato;
-import org.mobydigital.marias.portafolio.repositories.CandidatoRepository;
+import org.mobydigital.marias.portafolio.models.entities.Candidate;
+import org.mobydigital.marias.portafolio.repositories.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,31 +14,31 @@ import java.util.stream.Collectors;
 public class CandidatoService {
 
     @Autowired
-    private CandidatoRepository repository;
+    private CandidateRepository repository;
 
-    public List<Candidato> getListEntidades(String nombreSubstring) {
+    public List<Candidate> getListEntidades(String nombreSubstring) {
         if(nombreSubstring!=null){
             return repository.findAll().stream()
-                    .filter(c->(c.getNombre()+" "+c.getApellido()).startsWith(nombreSubstring))
+                    .filter(c->(c.getName()+" "+c.getLastname()).startsWith(nombreSubstring))
                     .collect(Collectors.toList());
         }else{
             return repository.findAll();
         }
     }
 
-    public List<Candidato> getListEntidades() {
+    public List<Candidate> getListEntidades() {
         return repository.findAll();
     }
 
 
-    public Candidato porId(Long id) {
-        return repository.findAll().stream().filter(e->e.getIdCandidato().equals(id)).findAny()
+    public Candidate porId(Long id) {
+        return repository.findAll().stream().filter(e->e.getIdCandidate().equals(id)).findAny()
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Candidato not found"));
 
     }
 
 
-    public Candidato guardar(Candidato candidato) {
+    public Candidate guardar(Candidate candidato) {
         if(repository.findAll().stream().anyMatch(e -> e.equals(candidato))){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"ese Candidato ya existe");
         }
