@@ -1,22 +1,9 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
-import org.mobydigital.marias.portafolio.repositories.EducacionRepository;
-import org.mobydigital.marias.portafolio.services.EducacionService;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EducacionTest {
@@ -65,7 +52,7 @@ class EducacionTest {
 
     @Test
     void testRelacionCandidatoEducacion(){
-        Candidato candidato = new Candidato(1L,"Matias","Arias","matiasarias384@gmail.com");
+        Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com");
         Educacion educacion = new Educacion(912L, "UTN FRVM", "Testing 2023", 2023, 2023, candidato);
         assertEquals("Matias",educacion.getCandidato().getNombre());
         assertNotNull(candidato.getEducacionList());
