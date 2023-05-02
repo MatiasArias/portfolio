@@ -1,7 +1,7 @@
 package org.mobydigital.marias.portafolio.controllers;
 
 
-import jakarta.ws.rs.QueryParam;
+
 import org.mobydigital.marias.portafolio.models.entities.Candidato;
 import org.mobydigital.marias.portafolio.services.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class CandidatoController {
         return new ResponseEntity<Candidato>(candidatoService.guardar(candidato), HttpStatus.CREATED);
     }
     @GetMapping
-    public ResponseEntity<List<Candidato>> getcandidatos(@QueryParam("educacion") String candidato){
+    public ResponseEntity<List<Candidato>> getcandidatos(@RequestParam("educacion") String candidato){
         return new ResponseEntity<List<Candidato>>(candidatoService.getListEntidades(candidato), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
