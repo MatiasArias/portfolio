@@ -37,12 +37,12 @@ public class ExperienceController {
         System.out.println(experience.getName());
         return new ResponseEntity<ExperienceDto>(experienceService.createExperience(experience),HttpStatus.CREATED);
     }
-    @GetMapping("/form/create")
+    @GetMapping("/form")
     public ModelAndView createExperienceView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_EXPERIENCE);
         return modelAndView.addObject("experience",new ExperienceDto());
     }
-    @PostMapping("/form/create")
+    @PostMapping("/form")
     public RedirectView saveExperienceForm(ExperienceDto experience, Model model){
         experienceService.createExperience(experience);
         model.addAttribute("experiences",experienceService.findAll());

@@ -29,12 +29,12 @@ public class EducationController {
     public ResponseEntity<EducationDto> getEducationPorId(@PathVariable("id") Long id){
         return new ResponseEntity<EducationDto>(educationService.getEducationById(id),HttpStatus.OK);
     }
-    @GetMapping("/form/create")
+    @GetMapping("/form")
     public ModelAndView createEducationView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_EDUCATION);
         return modelAndView.addObject("education",new EducationDto());
     }
-    @PostMapping("/form/create")
+    @PostMapping("/form")
     public RedirectView saveEducationForm(EducationDto education, Model model){
         educationService.createEducation(education);
         model.addAttribute("educations",educationService.findAll());

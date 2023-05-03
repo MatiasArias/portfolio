@@ -31,12 +31,12 @@ public class SkillController {
         return new ResponseEntity<SkillDto>(skillService.getSkillById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/form/create")
+    @GetMapping("/form")
     public ModelAndView createSkillView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         return modelAndView.addObject("skill",new Skill());
     }
-    @PostMapping("/form/create")
+    @PostMapping("/form")
     public RedirectView saveExperienceForm(SkillDto skill, Model model){
         skillService.createSkill(skill);
         model.addAttribute("skills",skillService.findAll());
