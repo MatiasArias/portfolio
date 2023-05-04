@@ -23,8 +23,9 @@ public class ExperienceController {
     private ExperienceServiceImpl experienceService;
 
     @GetMapping
-    public ResponseEntity<List<ExperienceDto>> getExperiences(){
-        return new ResponseEntity<List<ExperienceDto>>(experienceService.findAll(), HttpStatus.OK);
+    public ModelAndView getExperiences(){
+        ModelAndView modelAndView = new ModelAndView(Pages.VIEW_EXPERIENCES);
+        return modelAndView.addObject("experiences",experienceService.findAll());
     }
 
 

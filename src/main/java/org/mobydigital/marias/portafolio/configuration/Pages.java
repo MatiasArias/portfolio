@@ -9,5 +9,6 @@ public class Pages {
     public static String FORM_EXPERIENCE ="/forms/form-experience";
     public static String FORM_EDUCATION ="/forms/form-education";
     public static String VIEW_EDUCATION ="/views/view-educations";
+    public static String VIEW_EXPERIENCES ="/views/view-experiences";
 
 }
