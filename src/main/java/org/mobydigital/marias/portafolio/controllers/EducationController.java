@@ -23,8 +23,9 @@ public class EducationController {
     private EducationService educationService;
 
     @GetMapping
-    public ResponseEntity<List<EducationDto>> getEducations(){
-        return new ResponseEntity<List<EducationDto>>(educationService.findAll(), HttpStatus.OK);
+    public ModelAndView getEducations(){
+        ModelAndView modelAndView = new ModelAndView(Pages.VIEW_EDUCATION);
+        return modelAndView.addObject("educations",educationService.findAll());
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<EducationDto> getEducationPorId(@PathVariable("id") Long id){
