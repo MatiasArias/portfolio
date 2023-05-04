@@ -34,11 +34,24 @@ public class SkillController {
     @GetMapping("/form")
     public ModelAndView createSkillView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
+        modelAndView.addObject("id",0);
         return modelAndView.addObject("skill",new Skill());
     }
     @PostMapping("/form")
-    public RedirectView saveExperienceForm(SkillDto skill, Model model){
+    public RedirectView createSkillForm(SkillDto skill, Model model){
         skillService.createSkill(skill);
+        model.addAttribute("skills",skillService.findAll());
+        return new RedirectView("/skills");
+    }
+    @GetMapping("/form/{id}")
+    public ModelAndView updateSkillView(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
+        modelAndView.addObject("id",id);
+        return modelAndView.addObject("skill",new Skill());
+    }
+    @PostMapping("/form/{id}")
+    public RedirectView updateSkillForm(@PathVariable("id") Long id,SkillDto skill, Model model){
+        skillService.updateSkill(id,skill);
         model.addAttribute("skills",skillService.findAll());
         return new RedirectView("/skills");
     }

@@ -40,6 +40,10 @@
 <div class="container">
     <form th:action="@{/skills/form/create}" method="post" th:object="${skill}">
         <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input th:value="${id}" type="text" class="form-control" id="id" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input th:field="*{name}" th:value="*{name}" type="text" class="form-control" id="name" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Nombre de la skill por cargar.</div>
