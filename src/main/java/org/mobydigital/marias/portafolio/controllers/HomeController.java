@@ -21,4 +21,9 @@ public class HomeController {
         modelAndView.addObject("projects", projectService.findAll());
         return modelAndView;
     }
+    @GetMapping("/login")
+    public ModelAndView login(){
+        ModelAndView modelAndView = new ModelAndView(Pages.LOGIN);
+        return modelAndView;
+    }
 }
