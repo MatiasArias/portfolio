@@ -4,6 +4,7 @@ package org.mobydigital.marias.portafolio.controllers;
 import org.mobydigital.marias.portafolio.configuration.Pages;
 import org.mobydigital.marias.portafolio.models.entities.Skill;
 import org.mobydigital.marias.portafolio.models.views.ExperienceDto;
+import org.mobydigital.marias.portafolio.models.views.SkillDto;
 import org.mobydigital.marias.portafolio.services.impl.ExperienceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,17 +35,31 @@ public class ExperienceController {
 
     @PostMapping("/create")
     public ResponseEntity<ExperienceDto> saveExperience(@RequestBody ExperienceDto experience){
-        System.out.println(experience.getName());
         return new ResponseEntity<ExperienceDto>(experienceService.createExperience(experience),HttpStatus.CREATED);
     }
     @GetMapping("/form")
     public ModelAndView createExperienceView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_EXPERIENCE);
+        modelAndView.addObject("id",0);
+        modelAndView.addObject("action","Save");
         return modelAndView.addObject("experience",new ExperienceDto());
     }
     @PostMapping("/form")
     public RedirectView saveExperienceForm(ExperienceDto experience, Model model){
         experienceService.createExperience(experience);
+        model.addAttribute("experiences",experienceService.findAll());
+        return new RedirectView("/experiences");
+    }
+    @GetMapping("/form/{id}")
+    public ModelAndView updateSkillView(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_EXPERIENCE);
+        modelAndView.addObject("idExperience",id);
+        modelAndView.addObject("action","Update");
+        return modelAndView.addObject("experience",experienceService.getExperienceById(id));
+    }
+    @PostMapping("/form/{id}")
+    public RedirectView updateSkillForm(@PathVariable("id") Long id, ExperienceDto experienceDto, Model model){
+        experienceService.updateExperience(id,experienceDto);
         model.addAttribute("experiences",experienceService.findAll());
         return new RedirectView("/experiences");
     }

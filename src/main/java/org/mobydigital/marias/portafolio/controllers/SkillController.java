@@ -36,7 +36,7 @@ public class SkillController {
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         modelAndView.addObject("id",0);
         modelAndView.addObject("action","Save");
-        return modelAndView.addObject("skill",new Skill());
+        return modelAndView.addObject("skill",new SkillDto());
     }
     @PostMapping("/form")
     public RedirectView createSkillForm(SkillDto skill, Model model){
@@ -49,7 +49,7 @@ public class SkillController {
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         modelAndView.addObject("id",id);
         modelAndView.addObject("action","Update");
-        return modelAndView.addObject("skill",new Skill());
+        return modelAndView.addObject("skill",skillService.getSkillById(id));
     }
     @PostMapping("/form/{id}")
     public RedirectView updateSkillForm(@PathVariable("id") Long id,SkillDto skill, Model model){

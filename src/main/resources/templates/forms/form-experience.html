@@ -41,10 +41,10 @@
     </div>
 </div>
 <div class="container">
-    <form th:action="@{/experiences/form/create}" method="post" th:object="${experience}">
+    <form th:action="${action}=='Save'? @{/experiences/form} : @{/experiences/form/{id}(id=${idExperience})}" method="post" th:object="${experience}">
         <div class="mb-3">
-<!--            <label for="id" class="form-label">Id</label>-->
-<!--            <input th:field="*{idExperience}" th:value="*{idExperience}" type="text" class="form-control" id="id" >-->
+            <label for="id" class="form-label">Id</label>
+            <input  th:value="${idExperience}" type="text" class="form-control" id="id" >
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
@@ -63,7 +63,7 @@
                 <input th:field="*{yearUntil}" th:value="*{yearUntil}" type="text" class="form-control" placeholder="Hasta" aria-label="Hasta">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" href="/">Guardar</button>
+        <button type="submit" class="btn btn-primary" href="">Guardar</button>
     </form>
 </div>
 
