@@ -19,6 +19,7 @@
     <div>
         <table class="table table-striped">
            <thead>
+           <th>Id</th>
            <th>Nombre</th>
            <th>Descripcion</th>
            <th>Desde</th>
@@ -28,13 +29,13 @@
            </thead>
             <tbody>
             <tr th:each="experience:${experiences}">
-                <th th:text="${experience.name}"></th>
+                <th th:text="${experience.id}"></th>
                 <td th:text="${experience.name}"></td>
                 <td th:text="${experience.description}"></td>
                 <td th:text="${experience.yearSince}"></td>
                 <td th:text="${experience.yearUntil}"></td>
-                <td><a th:href="@{/experiences/form/}+${experiences.id}" type="button" class="btn btn-primary">Editar</a></td>
-                <td><a th:action="@{/experiences/delete/}+${experiences.id}" type="button" method="delete" class="btn btn-danger">Eliminar</a></td>
+                <td><a th:href="@{/experiences/form/}+${experience.id}" type="button" class="btn btn-primary">Editar</a></td>
+                <td><a th:action="@{/experiences/delete/}+${experience.id}" type="button" method="delete" class="btn btn-danger">Eliminar</a></td>
             </tr>
             </tbody>
         </table>

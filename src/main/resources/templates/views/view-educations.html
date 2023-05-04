@@ -35,7 +35,7 @@
                 <td th:text="${education.yearEntry}"></td>
                 <td th:text="${education.graduation}"></td>
                 <td><a th:href="@{/educations/form/}+${education.id}"  type="button" class="btn btn-primary">Editar</a></td>
-                <td><a th:href="@{/educations/delete/}+${education.id}" method="delete" type="button" class="btn btn-danger">Eliminar</a></td>
+                <td><a th:action="@{/educations/delete/}+${education.id}" method="delete" type="button" class="btn btn-danger">Eliminar</a></td>
             </tr>
             </tbody>
         </table>
