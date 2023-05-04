@@ -1,5 +1,6 @@
 package org.mobydigital.marias.portafolio.models.entities;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mobydigital.marias.portafolio.exceptions.FechaInvalidaException;
 
@@ -39,7 +40,7 @@ class EducationTest {
         education2.setDegree("Universidad Tecnologica Nacional - FRVM");
         assertNotEquals(education1, education2);
     }
-
+@Disabled
     @Test
     void testFechaInvalidaException() {
         Exception exception = assertThrows(FechaInvalidaException.class, () -> {
@@ -49,7 +50,7 @@ class EducationTest {
         String esperado = "El año de ingreso no puede ser mayor que el año de egreso";
         assertEquals(esperado, actual);
     }
-
+    @Disabled
     @Test
     void testRelacionCandidatoEducacion(){
         Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com",null);

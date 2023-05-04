@@ -67,6 +67,9 @@ public class EducationServiceImpl implements EducationService {
                 .ifPresentOrElse(
                         education -> {
                             education.setDegree(educationDto.getDegree());
+                            education.setInstitution(educationDto.getInstitution());
+                            education.setYearEntry(educationDto.getYearEntry());
+                            education.setGraduation(educationDto.getGraduation());
                             educationRepository.save(education);
                         },
                         () -> {

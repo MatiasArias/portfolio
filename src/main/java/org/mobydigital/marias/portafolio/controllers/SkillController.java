@@ -23,22 +23,38 @@ public class SkillController {
     private SkillServiceImpl skillService;
 
     @GetMapping
-    public ResponseEntity<List<SkillDto>> getSkills(){
-        return new ResponseEntity<List<SkillDto>>(skillService.findAll(), HttpStatus.OK);
+    public ModelAndView getSkills(){
+        ModelAndView modelAndView = new ModelAndView(Pages.VIEW_SKILLS);
+        return modelAndView.addObject("skills",skillService.findAll());
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<SkillDto> getSkillById(@PathVariable("id") Long id){
         return new ResponseEntity<SkillDto>(skillService.getSkillById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/form/create")
+    @GetMapping("/form")
     public ModelAndView createSkillView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
-        return modelAndView.addObject("skill",new Skill());
+        modelAndView.addObject("id",0);
+        modelAndView.addObject("action","Save");
+        return modelAndView.addObject("skill",new SkillDto());
     }
-    @PostMapping("/form/create")
-    public RedirectView saveExperienceForm(SkillDto skill, Model model){
+    @PostMapping("/form")
+    public RedirectView createSkillForm(SkillDto skill, Model model){
         skillService.createSkill(skill);
+        model.addAttribute("skills",skillService.findAll());
+        return new RedirectView("/skills");
+    }
+    @GetMapping("/form/{id}")
+    public ModelAndView updateSkillView(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
+        modelAndView.addObject("id",id);
+        modelAndView.addObject("action","Update");
+        return modelAndView.addObject("skill",skillService.getSkillById(id));
+    }
+    @PostMapping("/form/{id}")
+    public RedirectView updateSkillForm(@PathVariable("id") Long id,SkillDto skill, Model model){
+        skillService.updateSkill(id,skill);
         model.addAttribute("skills",skillService.findAll());
         return new RedirectView("/skills");
     }

@@ -4,6 +4,7 @@ package org.mobydigital.marias.portafolio.controllers;
 import org.mobydigital.marias.portafolio.configuration.Pages;
 import org.mobydigital.marias.portafolio.models.views.EducationDto;
 import org.mobydigital.marias.portafolio.models.views.ExperienceDto;
+import org.mobydigital.marias.portafolio.models.views.SkillDto;
 import org.mobydigital.marias.portafolio.services.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,21 +23,37 @@ public class EducationController {
     private EducationService educationService;
 
     @GetMapping
-    public ResponseEntity<List<EducationDto>> getEducations(){
-        return new ResponseEntity<List<EducationDto>>(educationService.findAll(), HttpStatus.OK);
+    public ModelAndView getEducations(){
+        ModelAndView modelAndView = new ModelAndView(Pages.VIEW_EDUCATION);
+        return modelAndView.addObject("educations",educationService.findAll());
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<EducationDto> getEducationPorId(@PathVariable("id") Long id){
         return new ResponseEntity<EducationDto>(educationService.getEducationById(id),HttpStatus.OK);
     }
-    @GetMapping("/form/create")
+    @GetMapping("/form")
     public ModelAndView createEducationView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_EDUCATION);
+        modelAndView.addObject("id",0);
+        modelAndView.addObject("action","Save");
         return modelAndView.addObject("education",new EducationDto());
     }
-    @PostMapping("/form/create")
+    @PostMapping("/form")
     public RedirectView saveEducationForm(EducationDto education, Model model){
         educationService.createEducation(education);
+        model.addAttribute("educations",educationService.findAll());
+        return new RedirectView("/educations");
+    }
+    @GetMapping("/form/{id}")
+    public ModelAndView updateSkillView(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView(Pages.FORM_EDUCATION);
+        modelAndView.addObject("id",id);
+        modelAndView.addObject("action","Update");
+        return modelAndView.addObject("education",educationService.getEducationById(id));
+    }
+    @PostMapping("/form/{id}")
+    public RedirectView updateSkillForm(@PathVariable("id") Long id, EducationDto educationDto, Model model){
+        educationService.updateEducation(id,educationDto);
         model.addAttribute("educations",educationService.findAll());
         return new RedirectView("/educations");
     }
