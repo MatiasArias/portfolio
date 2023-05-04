@@ -71,9 +71,9 @@ public class ExperienceController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id){
+    public RedirectView deleteUser(@PathVariable("id") Long id){
         experienceService.deleteExperience(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new RedirectView("/experiences");
     }
 
 }

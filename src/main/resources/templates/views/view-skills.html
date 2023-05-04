@@ -14,8 +14,12 @@
     <h1>Matias Arias - Template</h1>
     <h2>Desarrollador Backend</h2>
     <div>
+        <a th:href="@{/educations/form}" type="button" class="btn btn-success">New</a>
+    </div>
+    <div>
         <table class="table table-striped">
            <thead>
+           <th>#</th>
            <th>Nombre</th>
            <th>Descripcion</th>
            <th>Desde</th>
@@ -25,10 +29,11 @@
            </thead>
             <tbody>
             <tr th:each="skill:${skills}">
-                <th th:text="${skill.name}"></th>
+                <th th:text="${skill.id}"></th>
+                <td th:text="${skill.name}"></td>
                 <td th:text="${skill.description}"></td>
                 <td><a th:href="@{/skill/form/{id}}" type="button" class="btn btn-primary">Editar</a></td>
-                <td><a th:href="@{/skill/delete/{id}}" type="button" class="btn btn-danger">Eliminar</a></td>
+                <td><a th:action="@{/skill/delete}" type="button" class="btn btn-danger">Eliminar</a></td>
             </tr>
             </tbody>
         </table>

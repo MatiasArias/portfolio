@@ -98,7 +98,7 @@ public class EducationControllerTest {
     @Test
     @DisplayName("UPDATE http://localhost:8080/educations/update/1 - Success")
     void testUpdateEducation() throws Exception {
-        EducationDto educationDtoPut = new EducationDto("UTN FRVM","Testing",2020,2021);
+        EducationDto educationDtoPut = new EducationDto(0L,"UTN FRVM","Testing",2020,2021);
 
         mockMvc.perform(put("/educations/update/1")
                         .contentType(MediaType.APPLICATION_JSON)

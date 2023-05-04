@@ -14,6 +14,9 @@
     <h1>Matias Arias - Template</h1>
     <h2>Desarrollador Backend</h2>
     <div>
+        <a th:href="@{/experiences/form}" type="button" class="btn btn-success">New</a>
+    </div>
+    <div>
         <table class="table table-striped">
            <thead>
            <th>Nombre</th>
@@ -30,8 +33,8 @@
                 <td th:text="${experience.description}"></td>
                 <td th:text="${experience.yearSince}"></td>
                 <td th:text="${experience.yearUntil}"></td>
-                <td><a th:href="@{/experiences/form/{id}}" type="button" class="btn btn-primary">Editar</a></td>
-                <td><a th:href="@{/experiences/delete/{id}}" type="button" class="btn btn-danger">Eliminar</a></td>
+                <td><a th:href="@{/experiences/form/}+${experiences.id}" type="button" class="btn btn-primary">Editar</a></td>
+                <td><a th:action="@{/experiences/delete/}+${experiences.id}" type="button" method="delete" class="btn btn-danger">Eliminar</a></td>
             </tr>
             </tbody>
         </table>
