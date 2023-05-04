@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 @ToString
 public class ExperienceDto {
+    private Long id;
     private String name;
     private String description;
     private Integer yearSince;
