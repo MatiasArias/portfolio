@@ -38,10 +38,10 @@
     </div>
 </div>
 <div class="container">
-    <form th:action="@{/skills/form/create}" method="post" th:object="${skill}">
+    <form th:action="${action}=='Save'? @{/skills/form} : @{/skills/form/{idN}(idN=${id})}" method="post" th:object="${skill}">
         <div class="mb-3">
             <label for="id" class="form-label">Id</label>
-            <input th:value="${id}" type="text" class="form-control" id="id" aria-describedby="emailHelp">
+            <input th:value="${id}"  type="text" class="form-control" id="id" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>

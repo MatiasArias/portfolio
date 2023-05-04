@@ -35,6 +35,7 @@ public class SkillController {
     public ModelAndView createSkillView(){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         modelAndView.addObject("id",0);
+        modelAndView.addObject("action","Save");
         return modelAndView.addObject("skill",new Skill());
     }
     @PostMapping("/form")
@@ -47,6 +48,7 @@ public class SkillController {
     public ModelAndView updateSkillView(@PathVariable("id") Long id){
         ModelAndView modelAndView = new ModelAndView(Pages.FORM_SKILL);
         modelAndView.addObject("id",id);
+        modelAndView.addObject("action","Update");
         return modelAndView.addObject("skill",new Skill());
     }
     @PostMapping("/form/{id}")
