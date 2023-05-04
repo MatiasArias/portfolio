@@ -40,25 +40,4 @@ class EducationTest {
         education2.setDegree("Universidad Tecnologica Nacional - FRVM");
         assertNotEquals(education1, education2);
     }
-@Disabled
-    @Test
-    void testFechaInvalidaException() {
-        Exception exception = assertThrows(FechaInvalidaException.class, () -> {
-            Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2028, 2023,null);
-        });
-        String actual = exception.getMessage();
-        String esperado = "El año de ingreso no puede ser mayor que el año de egreso";
-        assertEquals(esperado, actual);
-    }
-    @Disabled
-    @Test
-    void testRelacionCandidatoEducacion(){
-        Candidate candidato = new Candidate(1L,"Matias","Arias","matiasarias384@gmail.com",null);
-        Education education = new Education(912L, "UTN FRVM", "Testing 2023", 2023, 2023, candidato);
-        assertEquals("Matias", education.getCandidate().getName());
-        assertNotNull(candidato.getEducationList());
-        assertTrue(candidato.getEducationList().size()>0);
-        assertEquals("UTN FRVM",candidato.getEducationList().get(0).getInstitution());
-    }
-
 }

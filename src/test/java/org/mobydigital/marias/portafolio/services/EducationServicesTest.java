@@ -20,23 +20,23 @@ import static org.mockito.Mockito.*;
 public class EducationServicesTest {
 
     @Mock
-    private EducationRepository educacionRepository;
+    private EducationRepository educationRepository;
 
     @InjectMocks
-    private EducationServiceImpl educacionService;
+    private EducationServiceImpl educationService;
 
     @Test
     void testEducacionById() {
         Education education = new Education();
         education.setInstitution("UTN FRVM");
         education.setDegree("Testing 2023");
-        when(educacionRepository.findById(1L)).thenReturn(Optional.of(education));
+        when(educationRepository.findById(1L)).thenReturn(Optional.of(education));
 
-        EducationDto result = educacionService.getEducationById(1L);
+        EducationDto result = educationService.getEducationById(1L);
 
         assertEquals(result.getInstitution(), education.getInstitution());
         assertEquals(result.getDegree(), education.getDegree());
-        verify(educacionRepository, times(1)).findById(1L);
+        verify(educationRepository, times(1)).findById(1L);
     }
 
     @Test
@@ -45,17 +45,17 @@ public class EducationServicesTest {
         education.setInstitution("UTN FRVM");
         education.setDegree("Testing");
 
-        when(educacionRepository.save(education)).thenReturn(education);
+        when(educationRepository.save(education)).thenReturn(education);
 
         EducationDto educacionDTO = new EducationDto();
         educacionDTO.setInstitution("UTN FRVM");
         educacionDTO.setDegree("Testing");
 
-        EducationDto result = educacionService.createEducation(educacionDTO);
+        EducationDto result = educationService.createEducation(educacionDTO);
 
         assertEquals(result.getInstitution(), education.getInstitution());
         assertEquals(result.getDegree(), education.getDegree());
-        verify(educacionRepository, times(1)).save(education);
+        verify(educationRepository, times(1)).save(education);
     }
 }
 
