@@ -18,7 +18,6 @@ public class ProjectServiceImpl {
         List<Project> projects = new ArrayList<>();
         List<String> projectFile = fileService.readFile("src\\main\\java\\org\\mobydigital\\marias\\portafolio\\files\\Proyectos.csv");
         for(String project : projectFile){
-            System.out.println(project);
             projects.add(new Project(Long.parseLong(project.split(";")[0]),project.split(";")[1],project.split(";")[2],project.split(";")[3],project.split(";")[4],new Date(),project.split(";")[6]));
         }
         return projects;

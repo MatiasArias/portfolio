@@ -46,7 +46,7 @@ public class EducationControllerTest {
     }
 
     @Test
-    @DisplayName("GET http://localhost:8080/educaciones - Success")
+    @DisplayName("GET http://localhost:8080/educations - Success")
     void testEducaciones() throws Exception {
         EducationDto educacionDto = new EducationDto();
         educacionDto.setDegree("Testing");
@@ -56,14 +56,14 @@ public class EducationControllerTest {
 
         when(educacionService.findAll()).thenReturn(educaciones);
 
-        mockMvc.perform(get("/educaciones"))
+        mockMvc.perform(get("/educations"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].titulo",is("Testing")))
-                .andExpect(jsonPath("$.[0].institucion",is("UTN FRVM")));
+                .andExpect(jsonPath("$.[0].degree",is("Testing")))
+                .andExpect(jsonPath("$.[0].institution",is("UTN FRVM")));
     }
 
     @Test
-    @DisplayName("GET http://localhost:8080/educaciones/1 - Success")
+    @DisplayName("GET http://localhost:8080/educations/1 - Success")
     void testEducacionById() throws Exception {
         EducationDto educacionDto = new EducationDto();
         educacionDto.setDegree("Testing");
@@ -71,14 +71,14 @@ public class EducationControllerTest {
 
         when(educacionService.getEducationById(1L)).thenReturn(educacionDto);
 
-        mockMvc.perform(get("/educaciones/1"))
+        mockMvc.perform(get("/educations/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.titulo",is("Testing")))
-                .andExpect(jsonPath("$.institucion",is("UTN FRVM")));
+                .andExpect(jsonPath("$.degree",is("Testing")))
+                .andExpect(jsonPath("$.institution",is("UTN FRVM")));
     }
 
     @Test
-    @DisplayName("POST http://localhost:8080/educaciones/create - Success")
+    @DisplayName("POST http://localhost:8080/educations/create - Success")
     void testCreateEducacion() throws Exception {
         EducationDto educationDto = new EducationDto();
         educationDto.setDegree("Testing");
@@ -87,7 +87,7 @@ public class EducationControllerTest {
         when(educacionService.createEducation(Mockito.eq(educationDto))).thenReturn(educationDto);
 
 
-        mockMvc.perform(post("/educaciones/create")
+        mockMvc.perform(post("/educations/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(educationDto)))
                 .andExpect(status().isCreated())
@@ -96,7 +96,7 @@ public class EducationControllerTest {
     }
 
     @Test
-    @DisplayName("UPDATE http://localhost:8080/educationes/update/1 - Success")
+    @DisplayName("UPDATE http://localhost:8080/educations/update/1 - Success")
     void testUpdateEducation() throws Exception {
         EducationDto educationDtoPut = new EducationDto("UTN FRVM","Testing",2020,2021);
 
