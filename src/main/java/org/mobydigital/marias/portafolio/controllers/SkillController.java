@@ -23,8 +23,9 @@ public class SkillController {
     private SkillServiceImpl skillService;
 
     @GetMapping
-    public ResponseEntity<List<SkillDto>> getSkills(){
-        return new ResponseEntity<List<SkillDto>>(skillService.findAll(), HttpStatus.OK);
+    public ModelAndView getSkills(){
+        ModelAndView modelAndView = new ModelAndView(Pages.VIEW_SKILLS);
+        return modelAndView.addObject("skills",skillService.findAll());
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<SkillDto> getSkillById(@PathVariable("id") Long id){
